@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" opacity="0.075" fill="none" stroke="#37752c" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+  <!-- list -->
+  <path d="M38 78c0-22 14-36 38-38-2 24-16 38-38 38zM38 78l20-20"/>
+  <!-- kapljica -->
+  <path d="M196 36s-12 14-12 23a12 12 0 0 0 24 0c0-9-12-23-12-23z"/>
+  <!-- šestougaonik N -->
+  <path d="M250 150h22l11 19-11 19h-22l-11-19z"/>
+  <text x="261" y="174" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#37752c" stroke="none" text-anchor="middle">N</text>
+  <!-- šestougaonik P -->
+  <path d="M110 214h22l11 19-11 19h-22l-11-19z"/>
+  <text x="121" y="238" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#37752c" stroke="none" text-anchor="middle">P</text>
+  <!-- šestougaonik K -->
+  <path d="M20 262h22l11 19-11 19H20L9 281z"/>
+  <text x="31" y="286" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#37752c" stroke="none" text-anchor="middle">K</text>
+  <!-- granule -->
+  <circle cx="140" cy="120" r="4"/><circle cx="152" cy="126" r="3"/><circle cx="146" cy="134" r="3.5"/>
+  <circle cx="292" cy="268" r="4"/><circle cx="302" cy="276" r="3"/>
+  <!-- klas -->
+  <path d="M232 238v58M232 250c-6-3-9-8-9-14 6 2 9 7 9 14zM232 250c6-3 9-8 9-14-6 2-9 7-9 14zM232 266c-6-3-9-8-9-14 6 2 9 7 9 14zM232 266c6-3 9-8 9-14-6 2-9 7-9 14zM232 282c-6-3-9-8-9-14 6 2 9 7 9 14zM232 282c6-3 9-8 9-14-6 2-9 7-9 14z"/>
+  <!-- koren -->
+  <path d="M80 150v20M80 170c-8 6-12 14-12 22M80 170c8 6 12 14 12 22M80 178c-4 4-5 8-5 12M80 178c4 4 5 8 5 12"/>
+  <!-- molekul -->
+  <circle cx="190" cy="186" r="3"/><circle cx="208" cy="176" r="3"/><circle cx="208" cy="198" r="3"/><path d="M193 184l12-6M193 188l12 8"/>
+  <!-- kap 2 -->
+  <path d="M300 64s-7 8-7 13a7 7 0 0 0 14 0c0-5-7-13-7-13z"/>
+</svg>

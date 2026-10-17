@@ -25,7 +25,9 @@ html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-t
 html:has(.navigacija-strane) { scroll-padding-top: 160px; }
 body {
   margin: 0; font-family: var(--font); font-size: 17px; line-height: 1.65;
-  color: var(--tekst); background: var(--krem-svetla);
+  color: var(--tekst);
+  /* blaga šara na temu (listovi, kapi, granule, N-P-K) preko krem bele */
+  background: url("../img/uzorak.svg") 0 0 / 320px repeat, var(--krem-svetla);
 }
 img, svg { max-width: 100%; }
 img { height: auto; display: block; }
@@ -118,7 +120,7 @@ a:hover .strelica::after, .strelica:hover::after { transform: translateX(3px); }
 .poverenje svg { width: 34px; height: 34px; flex: none; padding: 7px; border-radius: 10px; background: var(--krem-2); fill: none; stroke: var(--list-tamni); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .izvor-veza { font-size: .72em; vertical-align: super; margin-left: 3px; text-decoration: none; font-weight: 700; color: var(--list-tamni); }
 .sekcija--tamna .izvor-veza { color: var(--zuta); }
-.problem { position: relative; overflow: hidden; background: radial-gradient(1200px 400px at 85% -10%, rgba(201,204,63,.16), transparent 60%), radial-gradient(900px 500px at 0% 120%, rgba(78,159,61,.25), transparent 60%), var(--tamna); }
+.problem { position: relative; overflow: hidden; background: url("../img/uzorak-svetli.svg") 0 0 / 320px repeat, radial-gradient(1200px 400px at 85% -10%, rgba(201,204,63,.16), transparent 60%), radial-gradient(900px 500px at 0% 120%, rgba(78,159,61,.25), transparent 60%), var(--tamna); }
 .problem__brojke { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .problem__brojka { position: relative; padding: 28px 26px 24px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); }
 .problem__brojka strong { display: block; font-size: clamp(2.4rem, 1.6rem + 3vw, 3.6rem); line-height: 1; color: var(--zuta); font-weight: 850; margin-bottom: 12px; letter-spacing: -.02em; }
@@ -321,8 +323,8 @@ a:hover .strelica::after, .strelica:hover::after { transform: translateX(3px); }
 
 /* ── sekcije ── */
 .sekcija { padding: clamp(56px, 7vw, 96px) 0; }
-.sekcija--krem { background: linear-gradient(180deg, var(--krem-svetla) 0%, #eaf1e1 100%); }
-.sekcija--tamna { background: var(--tamna); color: #e3ebde; }
+.sekcija--krem { background: url("../img/uzorak.svg") 160px 80px / 320px repeat, linear-gradient(180deg, var(--krem-svetla) 0%, #eaf1e1 100%); }
+.sekcija--tamna { background: url("../img/uzorak-svetli.svg") 0 0 / 320px repeat, var(--tamna); color: #e3ebde; }
 .sekcija--tamna h2, .sekcija--tamna h3 { color: var(--bela); }
 .sekcija--tamna a:not(.dugme) { color: var(--zuta); }
 .oznaka {
