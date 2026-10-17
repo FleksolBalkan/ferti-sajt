@@ -144,6 +144,17 @@ a:hover .strelica::after, .strelica:hover::after { transform: translateX(3px); }
 .kalkulator__rezultat strong { display: block; font-size: clamp(1.3rem, 1rem + 1.2vw, 1.9rem); color: var(--zuta); font-weight: 850; line-height: 1.1; font-variant-numeric: tabular-nums; }
 .kalkulator__rezultat span { font-size: .85rem; color: #cfdcc9; }
 .koraci.koraci--4 { grid-template-columns: repeat(4, 1fr); }
+.iz-nauke { margin: 0 0 18px; padding: 20px 22px; border-radius: 16px; background: linear-gradient(135deg, #14301f, #1f4a2c); color: #e6efe1; }
+.iz-nauke__oznaka { display: inline-block; margin-bottom: 8px; padding: 4px 10px; border-radius: 999px; background: var(--zuta); color: var(--tamna); font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.iz-nauke h4 { color: var(--bela); font-size: 1.08rem; margin: 0 0 8px; }
+.iz-nauke p { color: #dbe6d4; font-size: .95rem; }
+.iz-nauke__brojke { list-style: none; padding: 0; margin: 4px 0 14px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.iz-nauke__brojke li { padding: 12px; border-radius: 12px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.14); }
+.iz-nauke__brojke strong { display: block; color: var(--zuta); font-size: 1.45rem; font-weight: 850; line-height: 1.1; margin-bottom: 4px; }
+.iz-nauke__brojke span { font-size: .85rem; color: #d4dfce; }
+.iz-nauke .napomena { color: #b9c9b3; font-size: .82rem; margin: 0; }
+.iz-nauke a { color: var(--zuta); }
+@media (max-width: 640px) { .iz-nauke__brojke { grid-template-columns: 1fr; } }
 .razvoj { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
 .razvoj__slika { position: relative; border-radius: 22px; overflow: hidden; box-shadow: var(--senka-jaka); aspect-ratio: 4 / 3; background: var(--krem-2) center / cover no-repeat; }
 .razvoj__znacka { position: absolute; left: 18px; top: 18px; padding: 7px 14px; border-radius: 999px; background: var(--zuta); color: var(--tamna); font-weight: 800; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
