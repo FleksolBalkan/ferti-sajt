@@ -111,6 +111,50 @@ a:hover .strelica::after, .strelica:hover::after { transform: translateX(3px); }
 .sastav__traka { display: flex; border-radius: 10px; overflow: hidden; min-height: 46px; }
 .sastav__traka span { --b: var(--list-tamni); background: var(--b); color: var(--bela); font-weight: 700; font-size: .9rem; display: flex; align-items: center; justify-content: center; text-align: center; padding: 6px 8px; line-height: 1.2; }
 
+/* ── početna v2: poverenje, problem, rešenja, kalkulator, izvori ── */
+.poverenje { background: var(--bela); border-bottom: 1px solid var(--linija); box-shadow: 0 8px 24px rgba(20,48,31,.06); position: relative; z-index: 2; }
+.poverenje__red { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; padding-top: 18px; padding-bottom: 18px; }
+.poverenje span { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--tamna); font-size: .97rem; }
+.poverenje svg { width: 34px; height: 34px; flex: none; padding: 7px; border-radius: 10px; background: var(--krem-2); fill: none; stroke: var(--list-tamni); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.izvor-veza { font-size: .72em; vertical-align: super; margin-left: 3px; text-decoration: none; font-weight: 700; color: var(--list-tamni); }
+.sekcija--tamna .izvor-veza { color: var(--zuta); }
+.problem { position: relative; overflow: hidden; background: radial-gradient(1200px 400px at 85% -10%, rgba(201,204,63,.16), transparent 60%), radial-gradient(900px 500px at 0% 120%, rgba(78,159,61,.25), transparent 60%), var(--tamna); }
+.problem__brojke { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.problem__brojka { position: relative; padding: 28px 26px 24px; border-radius: 18px; background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.14); }
+.problem__brojka strong { display: block; font-size: clamp(2.4rem, 1.6rem + 3vw, 3.6rem); line-height: 1; color: var(--zuta); font-weight: 850; margin-bottom: 12px; letter-spacing: -.02em; }
+.problem__brojka span { color: #dfe8d8; font-size: 1rem; }
+.problem__brojka .izvor-veza { position: absolute; top: 14px; right: 16px; font-size: .8rem; vertical-align: baseline; }
+.problem__zakljucak { margin: 28px 0 0; font-size: 1.15rem; font-weight: 700; color: var(--bela); }
+.resenja { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+.resenje { display: flex; flex-direction: column; padding: 26px 22px 22px; border-radius: 18px; background: var(--bela); border: 1px solid var(--linija); box-shadow: var(--senka); position: relative; overflow: hidden; }
+.resenje::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px; background: linear-gradient(90deg, var(--list), var(--zuta)); }
+.resenje__oznaka { font-size: 12px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--list-tamni); margin-bottom: 8px; }
+.resenje h3 { font-size: 1.15rem; }
+.resenje p { color: var(--sivi); font-size: .96rem; }
+.resenje__dokaz { margin-top: auto; padding: 12px 14px; border-radius: 12px; background: var(--krem); color: var(--tekst) !important; font-size: .92rem !important; }
+.resenje .karta__vise { margin-top: 12px; text-decoration: none; }
+.kalkulator { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.kalkulator__forma { padding: clamp(22px, 3vw, 34px); border-radius: 22px; background: var(--bela); border: 1px solid var(--linija); box-shadow: var(--senka-jaka); display: grid; gap: 22px; }
+.kalkulator__polja { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.kalkulator__polja label { display: grid; gap: 6px; font-weight: 700; color: var(--tamna); font-size: .95rem; }
+.kalkulator__polja input { font: inherit; font-size: 1.25rem; font-weight: 700; padding: 12px 14px; border: 2px solid var(--linija); border-radius: 12px; color: var(--tamna); background: var(--krem-svetla); width: 100%; }
+.kalkulator__polja input:focus { border-color: var(--list); outline: none; box-shadow: 0 0 0 3px rgba(78,159,61,.25); }
+.kalkulator__rezultat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.kalkulator__rezultat div { padding: 16px 12px; border-radius: 14px; background: var(--tamna); color: var(--bela); text-align: center; }
+.kalkulator__rezultat strong { display: block; font-size: clamp(1.3rem, 1rem + 1.2vw, 1.9rem); color: var(--zuta); font-weight: 850; line-height: 1.1; font-variant-numeric: tabular-nums; }
+.kalkulator__rezultat span { font-size: .85rem; color: #cfdcc9; }
+.koraci.koraci--4 { grid-template-columns: repeat(4, 1fr); }
+.razvoj { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+.razvoj__slika { position: relative; border-radius: 22px; overflow: hidden; box-shadow: var(--senka-jaka); aspect-ratio: 4 / 3; background: var(--krem-2) center / cover no-repeat; }
+.razvoj__znacka { position: absolute; left: 18px; top: 18px; padding: 7px 14px; border-radius: 999px; background: var(--zuta); color: var(--tamna); font-weight: 800; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
+.izvori { margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--linija); font-size: .88rem; color: var(--sivi); scroll-margin-top: 110px; }
+.izvori h2 { font-size: 1rem; text-transform: uppercase; letter-spacing: .1em; color: var(--sivi); }
+.izvori ol { padding-left: 1.4em; margin: 0 0 10px; }
+.izvori li { margin-bottom: 4px; }
+@media (max-width: 1100px) { .resenja { grid-template-columns: repeat(2, 1fr); } .koraci.koraci--4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 960px) { .poverenje__red { grid-template-columns: repeat(2, 1fr); } .kalkulator, .razvoj { grid-template-columns: 1fr; } .problem__brojke { grid-template-columns: 1fr; } }
+@media (max-width: 640px) { .resenja, .koraci.koraci--4 { grid-template-columns: 1fr; } .poverenje span { font-size: .88rem; } .kalkulator__polja, .kalkulator__rezultat { grid-template-columns: 1fr; } }
+
 /* ── „Nova praksa”: tri stuba (nauka, inovacije, logistika) ── */
 .stubovi { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .stub { display: flex; flex-direction: column; padding: 28px; border-radius: var(--radijus); background: var(--bela); border: 1px solid var(--linija); border-top: 5px solid var(--list); box-shadow: var(--senka); }

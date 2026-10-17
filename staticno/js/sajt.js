@@ -91,6 +91,23 @@
     window.addEventListener('resize', function () { clearTimeout(tajmer); tajmer = setTimeout(proveriTabele, 150); });
   }
 
+  /* Kalkulator UAN 32 (početna): litri = ha × kg N/ha ÷ 0,42; tone = litri × 1,32 / 1000; m³ = litri / 1000 */
+  var kalk = document.getElementById('kalk');
+  if (kalk) {
+    var fmt = function (n, d) { return isFinite(n) && n > 0 ? n.toLocaleString(document.documentElement.lang || 'sr', { maximumFractionDigits: d }) : '—'; };
+    var racunaj = function () {
+      var ha = parseFloat(String(document.getElementById('kalk-ha').value).replace(',', '.'));
+      var n = parseFloat(String(document.getElementById('kalk-n').value).replace(',', '.'));
+      var litri = ha * n / 0.42;
+      document.getElementById('kalk-l').textContent = fmt(Math.round(litri / 10) * 10, 0);
+      document.getElementById('kalk-t').textContent = fmt(litri * 1.32 / 1000, 1);
+      document.getElementById('kalk-m3').textContent = fmt(Math.ceil(litri / 1000), 0);
+    };
+    kalk.addEventListener('input', racunaj);
+    kalk.addEventListener('submit', function (e) { e.preventDefault(); });
+    racunaj();
+  }
+
   var zaglavlje = document.querySelector('.zaglavlje');
   if (zaglavlje) {
     var senka = function () { zaglavlje.classList.toggle('skrol', window.scrollY > 8); };
