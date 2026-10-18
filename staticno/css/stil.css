@@ -613,3 +613,10 @@ tbody th { font-weight: 600; color: var(--tekst); }
   .hero::before, .traka-strane::before { display: none; }
   .hero h1, .traka-strane h1 { color: #000; }
 }
+
+/* tekstualne strane (politika privatnosti i sl.) — uži red i manji naslovi, radi čitljivosti */
+.tekst-strane { max-width: 760px; }
+.tekst-strane h2 { font-size: 1.3rem; margin: 1.6em 0 .5em; }
+.tekst-strane h2:first-child { margin-top: 0; }
+.tekst-strane p, .tekst-strane li { line-height: 1.65; }
+.tekst-strane ul { padding-left: 1.2em; margin: .4em 0 .8em; }
