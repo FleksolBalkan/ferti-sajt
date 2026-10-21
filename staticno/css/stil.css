@@ -157,6 +157,13 @@ a:hover .strelica::after, .strelica:hover::after { transform: translateX(3px); }
 .iz-nauke .napomena { color: #b9c9b3; font-size: .82rem; margin: 0; }
 .iz-nauke a { color: var(--zuta); }
 @media (max-width: 640px) { .iz-nauke__brojke { grid-template-columns: 1fr; } }
+/* Ferti-start tehnologija (POLYFERT 11-37) — oznaka uz naslov i blok sa infografikom */
+.ferti-start-znak { display: inline-block; margin: -2px 0 12px; padding: 6px 14px; border-radius: 999px; background: var(--zuta); color: var(--tamna); font-weight: 850; font-size: .92rem; letter-spacing: .04em; }
+.ferti-start { margin: 0 0 18px; padding: 20px 22px; border-radius: 16px; background: var(--krem); border: 2px solid var(--zuta); }
+.ferti-start__oznaka { display: inline-block; margin-bottom: 8px; padding: 4px 10px; border-radius: 999px; background: var(--tamna); color: var(--zuta); font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.ferti-start h4 { color: var(--tamna); font-size: 1.08rem; margin: 0 0 8px; }
+.ferti-start img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 12px 0 10px; box-shadow: var(--senka); }
+.ferti-start figcaption { color: var(--sivi); font-size: .85rem; }
 .razvoj { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
 .razvoj__slika { position: relative; border-radius: 22px; overflow: hidden; box-shadow: var(--senka-jaka); aspect-ratio: 4 / 3; background: var(--krem-2) center / cover no-repeat; }
 .razvoj__znacka { position: absolute; left: 18px; top: 18px; padding: 7px 14px; border-radius: 999px; background: var(--zuta); color: var(--tamna); font-weight: 800; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
