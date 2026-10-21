@@ -4,7 +4,7 @@
   "o-nama.html":    { "slika": "img/polje.jpg", "slikaOpis": "", "krug": null, "krugOpis": "vaša fotografija (skladište ili vozilo)", "ikone": ["list", "kap", "N"] },
   "proizvodi.html": { "slika": "img/pretakanje.jpg", "pozicija": "center 55%", "slikaOpis": "", "krug": "img/proizvodi-krug.jpg", "krugOpis": "", "ikone": ["N", "P", "K", "S"] },
   "oprema.html":    { "slika": "img/cisterna.jpg", "pozicija": "center 68%", "slikaOpis": "", "krug": "img/retencija.jpg", "krugOpis": "", "ikone": ["kap", "kamion", "senzor"] },
-  "primena.html":   { "slika": null, "slikaOpis": "traktor sa prskalicom u polju", "krug": null, "krugOpis": "dron za prihranu", "ikone": ["kap", "dron", "senzor"] },
+  "primena.html":   { "slika": "img/prskalica.jpg", "pozicija": "center 60%", "slikaOpis": "", "krug": "img/primena-krug.jpg", "krugOpis": "", "ikone": ["kap", "dron", "senzor"] },
   "znanje.html":    { "slika": "img/laboratorija.jpg", "pozicija": "center 35%", "slikaOpis": "", "krug": "img/polje.jpg", "krugOpis": "", "ikone": ["N", "P", "K", "list"] },
   "kontakt.html":   { "slika": "img/polje.jpg", "slikaOpis": "", "krug": "img/ikona.png", "krugOpis": "", "ikone": ["senzor", "kap"] },
   "404.html":       { "slika": "img/polje.jpg", "slikaOpis": "", "krug": null, "krugOpis": "", "ikone": [] }
