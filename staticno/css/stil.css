@@ -157,13 +157,42 @@ a:hover .strelica::after, .strelica:hover::after { transform: translateX(3px); }
 .iz-nauke .napomena { color: #b9c9b3; font-size: .82rem; margin: 0; }
 .iz-nauke a { color: var(--zuta); }
 @media (max-width: 640px) { .iz-nauke__brojke { grid-template-columns: 1fr; } }
-/* Ferti-start tehnologija (POLYFERT 11-37) — oznaka uz naslov i blok sa infografikom */
+/* POLYFERT 11-37 — Ferti-start tehnologija: oznaka, traka sastava, prednosti sa crtežom i infografikom, doze po grupama */
 .ferti-start-znak { display: inline-block; margin: -2px 0 12px; padding: 6px 14px; border-radius: 999px; background: var(--zuta); color: var(--tamna); font-weight: 850; font-size: .92rem; letter-spacing: .04em; }
+.p-sastav { margin: 0 0 18px; }
+.p-sastav__naslov, .p-doze__naslov { font-weight: 800; color: var(--tamna); margin: 0 0 8px; }
+.p-sastav__traka { display: flex; gap: 4px; border-radius: 12px; overflow: hidden; }
+.p-sastav__deo { padding: 10px 12px; font-size: .9rem; line-height: 1.3; min-width: 0; }
+.p-sastav__deo strong { font-size: 1.15rem; font-weight: 850; margin-right: 2px; }
+.p-sastav__deo small { display: block; font-size: .8rem; opacity: .85; }
+.p-sastav__deo--orto { background: var(--zuta); color: var(--tamna); }
+.p-sastav__deo--poli { background: var(--list-tamni); color: var(--bela); }
+.p-sastav__litar { margin: 8px 0 0; font-size: .9rem; color: var(--sivi); }
 .ferti-start { margin: 0 0 18px; padding: 20px 22px; border-radius: 16px; background: var(--krem); border: 2px solid var(--zuta); }
 .ferti-start__oznaka { display: inline-block; margin-bottom: 8px; padding: 4px 10px; border-radius: 999px; background: var(--tamna); color: var(--zuta); font-size: 12px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
-.ferti-start h4 { color: var(--tamna); font-size: 1.08rem; margin: 0 0 8px; }
-.ferti-start img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 12px 0 10px; box-shadow: var(--senka); }
-.ferti-start figcaption { color: var(--sivi); font-size: .85rem; }
+.ferti-start h4 { color: var(--tamna); font-size: 1.08rem; margin: 0 0 10px; }
+.ferti-start__red { display: grid; grid-template-columns: 1fr 230px; gap: 18px; align-items: start; }
+.ferti-start__prednosti { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.ferti-start__prednosti li { padding-left: 16px; border-left: 3px solid var(--zuta); font-size: .94rem; }
+.ferti-start__prednosti strong { color: var(--tamna); }
+.ferti-start__slike { margin: 0; display: grid; gap: 8px; }
+.ferti-start__slike img { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: var(--senka); }
+.ferti-start__slike figcaption { color: var(--sivi); font-size: .8rem; }
+.p-traka__crtez { width: 100%; height: auto; display: block; }
+.p-traka__crtez .zem { fill: #8a6a4a; }
+.p-traka__crtez .povrs { stroke: var(--list); stroke-width: 4; }
+.p-traka__crtez .seme { fill: var(--zuta); stroke: var(--tamna); stroke-width: 1.5; }
+.p-traka__crtez .kap { fill: var(--list); stroke: var(--bela); stroke-width: 2; }
+.p-traka__crtez .mera { stroke: var(--bela); stroke-width: 1.5; stroke-dasharray: 4 3; }
+.p-traka__crtez .lbl { fill: var(--bela); font-size: 12px; font-weight: 700; }
+.p-traka__crtez .lbl--gore { fill: var(--tamna); }
+.p-traka__crtez .mera-t { fill: var(--zuta); font-size: 12px; font-weight: 800; }
+.p-doze { margin: 0 0 18px; }
+.p-doze__grupa { border: 1px solid var(--linija); border-radius: 12px; margin: 0 0 8px; background: var(--bela); }
+.p-doze__grupa summary { cursor: pointer; padding: 10px 16px; font-weight: 750; color: var(--tamna); }
+.p-doze__grupa[open] summary { border-bottom: 1px solid var(--linija); }
+.p-doze__grupa .tabela-omot { margin: 0; border: 0; border-radius: 0 0 12px 12px; }
+@media (max-width: 760px) { .ferti-start__red { grid-template-columns: 1fr; } .ferti-start__slike { max-width: 360px; } }
 .razvoj { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
 .razvoj__slika { position: relative; border-radius: 22px; overflow: hidden; box-shadow: var(--senka-jaka); aspect-ratio: 4 / 3; background: var(--krem-2) center / cover no-repeat; }
 .razvoj__znacka { position: absolute; left: 18px; top: 18px; padding: 7px 14px; border-radius: 999px; background: var(--zuta); color: var(--tamna); font-weight: 800; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; }
