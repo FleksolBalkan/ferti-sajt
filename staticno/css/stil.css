@@ -678,3 +678,11 @@ tbody th { font-weight: 600; color: var(--tekst); }
 .detalj__slika--prozirna img { object-fit: contain; object-position: center; }
 .proizvod__slika--prozirna { padding: 14px 14px 0; }
 .proizvod__slika--prozirna img { object-fit: contain; object-position: center bottom; }
+/* strana studije: dugme ka prikazu rada, svetle brojke, lista referenci */
+.iz-nauke__dugme { display: inline-block; margin-top: 14px; font-size: 1.02rem; padding: 12px 22px; }
+.iz-nauke__brojke--svetlo li { background: var(--krem); border-color: var(--linija); }
+.iz-nauke__brojke--svetlo strong { color: var(--list-tamni); }
+.iz-nauke__brojke--svetlo span { color: var(--sivi); }
+.reference { padding-left: 1.3em; font-size: .94rem; }
+.reference li { margin-bottom: 8px; }
+@media (max-width: 760px) { .iz-nauke__brojke { grid-template-columns: 1fr; } }
