@@ -673,3 +673,11 @@ tbody th { font-weight: 600; color: var(--tekst); }
 .detalj__slika.detalj__slika--foto { padding: 0; height: auto; aspect-ratio: 3 / 5; max-height: 460px; }
 .detalj__slika--foto img { object-position: center center; }
 .proizvod__slika--foto img { object-position: center 35%; }
+/* prava ambalaža POLYFERT: PNG bez pozadine (contain) + prednja/zadnja strana */
+.detalj__slika.detalj__slika--prozirna { padding: 18px; aspect-ratio: 4 / 5; background: linear-gradient(180deg, var(--krem), var(--krem-2)); }
+.detalj__slika--prozirna img { object-fit: contain; object-position: center; }
+.proizvod__slika--prozirna { padding: 14px 14px 0; }
+.proizvod__slika--prozirna img { object-fit: contain; object-position: center bottom; }
+.pakovanje-foto { padding: 0; overflow: hidden; background: var(--bela); }
+.pakovanje-foto img { display: block; width: 100%; height: auto; }
+.pakovanje-foto figcaption { padding: 8px 14px; }
