@@ -660,3 +660,9 @@ tbody th { font-weight: 600; color: var(--tekst); }
 .sema__omot { overflow-x: auto; }
 .sema__omot svg { min-width: 860px; }
 .raspored-clanka > .clanak { min-width: 0; }
+/* istaknuta pakovanja (kanisteri) na strani Proizvodi */
+.pakovanja { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; margin-top: 32px; }
+.pakovanja__foto { padding: 0; overflow: hidden; background: var(--bela); }
+.pakovanja__foto img { display: block; width: 100%; height: auto; }
+.pakovanja__foto figcaption { padding: 10px 14px; }
+@media (max-width: 760px) { .pakovanja { grid-template-columns: 1fr; } }
