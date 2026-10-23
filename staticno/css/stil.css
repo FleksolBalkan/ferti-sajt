@@ -656,3 +656,7 @@ tbody th { font-weight: 600; color: var(--tekst); }
 .tekst-strane h2:first-child { margin-top: 0; }
 .tekst-strane p, .tekst-strane li { line-height: 1.65; }
 .tekst-strane ul { padding-left: 1.2em; margin: .4em 0 .8em; }
+/* shema prihrane (SVG sa biljkama) — na telefonu se prevlači vodoravno */
+.sema__omot { overflow-x: auto; }
+.sema__omot svg { min-width: 860px; }
+.raspored-clanka > .clanak { min-width: 0; }
