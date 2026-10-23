@@ -660,9 +660,16 @@ tbody th { font-weight: 600; color: var(--tekst); }
 .sema__omot { overflow-x: auto; }
 .sema__omot svg { min-width: 860px; }
 .raspored-clanka > .clanak { min-width: 0; }
-/* istaknuta pakovanja (kanisteri) na strani Proizvodi */
-.pakovanja { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: center; margin-top: 32px; }
-.pakovanja__foto { padding: 0; overflow: hidden; background: var(--bela); }
-.pakovanja__foto img { display: block; width: 100%; height: auto; }
-.pakovanja__foto figcaption { padding: 10px 14px; }
-@media (max-width: 760px) { .pakovanja { grid-template-columns: 1fr; } }
+/* pakovanje sa dugmetom „Poruči” u delu proizvoda; prave fotografije ambalaže */
+.poruci { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 14px 0 18px; padding: 14px 18px; border-radius: 12px; background: var(--bela); border: 1px solid var(--linija); border-left: 5px solid var(--list); }
+.poruci__tekst p { margin: 0 0 4px; }
+.poruci__tekst p:last-child { margin: 0; }
+.poruci .dugme { flex: 0 0 auto; }
+.detalj--uan { margin-top: 36px; border-bottom: 0; padding-bottom: 0; }
+.detalj__slika--foto img { object-position: center bottom; }
+.proizvod__slika--foto { padding: 0; overflow: hidden; }
+.proizvod__slika--foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
+@media (max-width: 760px) { .poruci { flex-direction: column; align-items: stretch; } .poruci .dugme { text-align: center; } }
+.detalj__slika.detalj__slika--foto { padding: 0; height: auto; aspect-ratio: 3 / 5; max-height: 460px; }
+.detalj__slika--foto img { object-position: center center; }
+.proizvod__slika--foto img { object-position: center 35%; }
