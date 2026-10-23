@@ -11,7 +11,10 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 // Adresa sajta kad dobije domen (npr. 'https://www.fertishop.rs/'). Dok je prazna, nema canonical/og:url/og:image/hreflang.
-const ADRESA_SAJTA = process.env.ADRESA_SAJTA || '';
+// Dok nema sopstvenog domena, adresa je Render (23.10.2026) — kad vlasnik kupi domen, promeniti ovde (ili ADRESA_SAJTA pri sklapanju) i ponovo sklopiti:
+// canonical, hreflang, og:url, sitemap.xml i robots.txt se prave iz ove adrese.
+const ADRESA_SAJTA = process.env.ADRESA_SAJTA || 'https://fertishop.onrender.com/';
+const ZA_SITEMAP = [];   // { loc, alternates: [{lang, href}], lastmod }
 // Koren sajta na hostingu — za stranu 404, koja se prikazuje na bilo kojoj dubini adrese.
 // '/' za sopstveni domen ili Render; '/ime-repoa/' za GitHub Pages projektnu stranu bez domena.
 const BAZA = process.env.BAZA || '/';
@@ -123,6 +126,7 @@ for (const j of Object.keys(jezici)) {
         Object.keys(jezici).filter(k => ima(k, ime)).map(k =>
           `<link rel="alternate" hreflang="${jezici[k].lang}" href="${escAtr(ADRESA_SAJTA + putDo(k, ime === 'index.html' ? '' : ime))}">`).join('\n') +
         (ima(GLAVNI, ime) ? `\n<link rel="alternate" hreflang="x-default" href="${escAtr(ADRESA_SAJTA + putDo(GLAVNI, ime === 'index.html' ? '' : ime))}">` : '');
+      ZA_SITEMAP.push({ loc: url, alternates: Object.keys(jezici).filter(k => ima(k, ime)).map(k => ({ lang: jezici[k].lang, href: ADRESA_SAJTA + putDo(k, ime === 'index.html' ? '' : ime) })) });
     }
 
     // funkcije kao zamena: znak $ u tekstu se ne tumači kao poseban obrazac
@@ -158,6 +162,15 @@ for (const j of Object.keys(jezici)) {
   console.log(`✓ ${j}: ${strane[j].length} strana`);
 }
 writeFileSync(join(novo, '.nojekyll'), '');
+// sitemap.xml (sve strane na sva tri jezika, sa hreflang alternativama) i robots.txt — ako ih staticno/ ne daje ručno
+if (ADRESA_SAJTA && ZA_SITEMAP.length) {
+  const danas = new Date().toISOString().slice(0, 10);
+  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
+    ZA_SITEMAP.map(u => `  <url>\n    <loc>${escAtr(u.loc)}</loc>\n    <lastmod>${danas}</lastmod>\n` +
+      u.alternates.map(a => `    <xhtml:link rel="alternate" hreflang="${a.lang}" href="${escAtr(a.href)}"/>`).join('\n') + `\n  </url>`).join('\n') + '\n</urlset>\n';
+  if (!existsSync(join(novo, 'sitemap.xml'))) writeFileSync(join(novo, 'sitemap.xml'), sitemap);
+  if (!existsSync(join(novo, 'robots.txt'))) writeFileSync(join(novo, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${ADRESA_SAJTA}sitemap.xml\n`);
+}
 if (existsSync(join(izlaz, 'CNAME')) && !existsSync(join(novo, 'CNAME'))) cpSync(join(izlaz, 'CNAME'), join(novo, 'CNAME'));
 
 // 3) tek kad je sve sklopljeno, zameni docs/
