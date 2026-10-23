@@ -678,6 +678,3 @@ tbody th { font-weight: 600; color: var(--tekst); }
 .detalj__slika--prozirna img { object-fit: contain; object-position: center; }
 .proizvod__slika--prozirna { padding: 14px 14px 0; }
 .proizvod__slika--prozirna img { object-fit: contain; object-position: center bottom; }
-.pakovanje-foto { padding: 0; overflow: hidden; background: var(--bela); }
-.pakovanje-foto img { display: block; width: 100%; height: auto; }
-.pakovanje-foto figcaption { padding: 8px 14px; }
