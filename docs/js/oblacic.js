@@ -108,7 +108,8 @@
     var zatvori = el('button', { type: 'button', 'class': 'fo-zatvori', 'aria-label': T.zatvori });
     zatvori.innerHTML = IKONA_X;
 
-    var okvir = el('iframe', { 'class': 'fo-okvir', title: NASLOV });
+    // allow="geolocation": bez ove dozvole pregledač odbija lokaciju u okviru sa drugog domena (dugme „Podeli lokaciju” u chatu)
+    var okvir = el('iframe', { 'class': 'fo-okvir', title: NASLOV, allow: 'geolocation' });
 
     // redosled u DOM-u prati raspored: X na vrhu, pa razgovor
     panel.appendChild(ucitava);
