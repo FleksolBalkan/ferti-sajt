@@ -41,7 +41,7 @@
     '.fo-tacka{position:absolute;top:6px;left:40px;width:12px;height:12px;border-radius:50%;background:#c9cc3f;border:2px solid #37752c}',
     '.fo-dugme[aria-expanded="true"] .fo-tacka,.fo-dugme[aria-expanded="true"] .fo-natpis{display:none}',
     '.fo-dugme[aria-expanded="true"]{width:60px;padding:0;justify-content:center}',
-    '.fo-panel{position:fixed;right:20px;bottom:92px;z-index:2147483001;width:390px;height:min(620px,calc(100vh - 120px));',
+    '.fo-panel{position:fixed;right:20px;bottom:92px;z-index:2147483001;width:min(663px,calc(100vw - 40px));height:min(1054px,calc(100vh - 120px));',
     'border-radius:18px;overflow:hidden;background:#f2f5ef;box-shadow:0 24px 60px rgba(20,48,31,.35);',
     'opacity:0;transform:translateY(12px) scale(.98);transform-origin:bottom right;transition:opacity .18s,transform .18s}',
     '.fo-panel[hidden]{display:none}',
