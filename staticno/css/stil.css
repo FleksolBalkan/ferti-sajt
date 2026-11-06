@@ -670,8 +670,9 @@ tbody th { font-weight: 600; color: var(--tekst); }
 .proizvod__slika--foto { padding: 0; overflow: hidden; }
 .proizvod__slika--foto img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; }
 @media (max-width: 760px) { .poruci { flex-direction: column; align-items: stretch; } .poruci .dugme { text-align: center; } }
-.detalj__slika.detalj__slika--foto { padding: 0; height: auto; aspect-ratio: 3 / 5; max-height: 460px; }
-.detalj__slika--foto img { object-position: center center; }
+/* fotografija opreme (rezervoar, retencija): okvir prati oblik slike — vidi se ceo proizvod, bez sečenja sa strana */
+.detalj__slika.detalj__slika--foto { padding: 0; height: auto; aspect-ratio: auto; max-height: none; }
+.detalj__slika--foto:not(.detalj__slika--prozirna) img { height: auto; object-fit: contain; object-position: center center; }
 .proizvod__slika--foto img { object-position: center 35%; }
 /* prava ambalaža POLYFERT: PNG bez pozadine (contain) + prednja/zadnja strana */
 .detalj__slika.detalj__slika--prozirna { padding: 18px; aspect-ratio: 4 / 5; background: transparent; border: 0; box-shadow: none; }
