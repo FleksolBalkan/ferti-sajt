@@ -9,6 +9,7 @@
 import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, cpSync, renameSync, existsSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { createHash } from 'node:crypto';
 
 // Adresa sajta kad dobije domen (npr. 'https://www.fertishop.rs/'). Dok je prazna, nema canonical/og:url/og:image/hreflang.
 // Dok nema sopstvenog domena, adresa je Render (23.10.2026) — kad vlasnik kupi domen, promeniti ovde (ili ADRESA_SAJTA pri sklapanju) i ponovo sklopiti:
@@ -25,6 +26,8 @@ const novo = join(koren, 'docs.novo');
 const osnova = readFileSync(join(koren, 'delovi', 'osnova.html'), 'utf8');
 const jezici = JSON.parse(readFileSync(join(koren, 'delovi', 'jezici.json'), 'utf8'));
 const godina = String(new Date().getFullYear());
+// {{VERZIJA}}: otisak stila i skripti — posle izmene pregledač i CDN uzimaju novi fajl (ne stari iz keša)
+const VERZIJA = createHash('sha256').update(['css/stil.css', 'js/sajt.js', 'js/oblacic.js'].map(f => readFileSync(join(koren, 'staticno', f), 'utf8')).join('\n')).digest('hex').slice(0, 10);
 const GLAVNI = 'sr';
 
 const escAtr = s => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -143,6 +146,7 @@ for (const j of Object.keys(jezici)) {
       .replaceAll('{{OG_LOCALE}}', () => J.og)
       .replaceAll('{{KOREN}}', () => KOREN)
       .replaceAll('{{GODINA}}', () => godina)
+      .replaceAll('{{VERZIJA}}', () => VERZIJA)
       .replace('{{JEZICI}}', () => izborJezika)
       .replace('{{DODATNO_ZAGLAVLJE}}', () => [meta, podaci.dodatno || ''].filter(Boolean).join('\n'))
       .replace('{{SADRZAJ}}', () => naslovna(ime, sadrzaj, KOREN).replaceAll('{{KOREN}}', KOREN));

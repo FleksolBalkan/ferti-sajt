@@ -115,3 +115,33 @@
     senka();
   }
 })();
+
+// 4s (vlasnik 8.11.2026): sličica sa data-uvecaj se na klik uvećava preko strane (ne otvara novu karticu); zatvara se klikom, dugmetom ✕ ili tasterom Esc
+(function () {
+  var linkovi = document.querySelectorAll('a[data-uvecaj]');
+  if (!linkovi.length) return;
+  var sloj = null;
+  function zatvori() { if (sloj) { sloj.remove(); sloj = null; document.removeEventListener('keydown', taster); } }
+  function taster(e) { if (e.key === 'Escape') zatvori(); }
+  function otvori(a) {
+    var img = a.querySelector('img'), fig = a.closest('figure'), opis = fig && fig.querySelector('figcaption');
+    sloj = document.createElement('div');
+    sloj.className = 'uvecanje';
+    sloj.setAttribute('role', 'dialog');
+    sloj.setAttribute('aria-modal', 'true');
+    var velika = document.createElement('img');
+    velika.src = a.getAttribute('href');
+    velika.alt = img ? img.alt : '';
+    var x = document.createElement('button');
+    x.type = 'button'; x.className = 'uvecanje__zatvori'; x.setAttribute('aria-label', 'Zatvori'); x.textContent = '✕';
+    var okvir = document.createElement('figure');
+    okvir.appendChild(velika);
+    if (opis) { var p = document.createElement('figcaption'); p.innerHTML = opis.innerHTML; okvir.appendChild(p); }
+    sloj.appendChild(x); sloj.appendChild(okvir);
+    sloj.addEventListener('click', zatvori);
+    document.addEventListener('keydown', taster);
+    document.body.appendChild(sloj);
+    x.focus();
+  }
+  linkovi.forEach(function (a) { a.addEventListener('click', function (e) { if (e.ctrlKey || e.metaKey || e.shiftKey) return; e.preventDefault(); otvori(a); }); });
+})();
