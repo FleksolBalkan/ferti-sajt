@@ -687,3 +687,12 @@ tbody th { font-weight: 600; color: var(--tekst); }
 .reference { padding-left: 1.3em; font-size: .94rem; }
 .reference li { margin-bottom: 8px; }
 @media (max-width: 760px) { .iz-nauke__brojke { grid-template-columns: 1fr; } }
+
+/* 4s (vlasnik 6.11.2026): pumpa TAP-GH 50 — dva tehnička crteža jednake veličine, manja od fotografije pumpe (kolona slike 300 px); dodir otvara pun prikaz */
+.pumpa-crtezi { display: grid; grid-template-columns: repeat(2, minmax(0, 260px)); gap: 14px; margin: 18px 0 6px; }
+.pumpa-crtezi figure { margin: 0; background: #fff; border: 1px solid var(--linija); border-radius: var(--radijus); overflow: hidden; display: flex; flex-direction: column; }
+.pumpa-crtezi a { display: block; background: #fff; }
+.pumpa-crtezi img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: contain; padding: 6px; background: #fff; }
+.pumpa-crtezi figcaption { padding: 8px 10px 10px; font-size: .82rem; line-height: 1.4; color: var(--sivi); border-top: 1px solid var(--linija); }
+.crtezi-napomena { font-size: .82rem; color: var(--sivi); margin: 0 0 14px; }
+@media (max-width: 760px) { .pumpa-crtezi { gap: 10px; } .pumpa-crtezi figcaption { font-size: .78rem; } }
