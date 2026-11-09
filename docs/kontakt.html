@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#14301f">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="apple-touch-icon" href="img/ikona.png">
-<link rel="stylesheet" href="css/stil.css?v=1a1a120156">
+<link rel="stylesheet" href="css/stil.css?v=fd0791e46b">
 <link rel="canonical" href="https://fertishop.onrender.com/kontakt.html">
 <meta property="og:url" content="https://fertishop.onrender.com/kontakt.html">
 <meta property="og:image" content="https://fertishop.onrender.com/img/og.png">
@@ -66,7 +66,7 @@
         <li><a class="meni-veza" href="znanje.html">Nauka</a></li>
         <li><a class="meni-veza" href="kontakt.html" aria-current="page">Kontakt</a></li>
       </ul>
-      <a class="dugme dugme--malo meni__ponuda" href="kontakt.html" data-otvori-chat>Zatražite ponudu</a>
+      <a class="dugme dugme--malo meni__ponuda" href="kontakt.html#ponuda">Zatražite ponudu</a>
     </nav>
   </div>
 </header>
@@ -87,6 +87,40 @@
     <p>Pozovite nas, pošaljite mejl ili pišite asistentu na sajtu — javljamo se sa predlogom.</p>
   </div>
     <svg class="naslovna__dno" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 60V40C300 0 600 0 900 26s400 30 540 0v34z" fill="#c9cc3f"/></svg>
+  </div>
+</section>
+
+<section class="sekcija" id="ponuda" aria-labelledby="ponuda-naslov">
+  <div class="okvir upit-okvir">
+    <div class="upit-uvod">
+      <span class="oznaka">Ponuda za vašu parcelu</span>
+      <h2 id="ponuda-naslov">Zatražite ponudu</h2>
+      <p class="uvod">Ostavite ime i telefon — javljamo se sa predlogom po kulturi i hektarima.</p>
+      <p><a class="dugme dugme--malo" href="tel:+381692012001">069 201 2001</a></p>
+      <p class="napomena">Radije pitate odmah? <a href="kontakt.html" data-otvori-chat>Pišite asistentu</a></p>
+    </div>
+    <form class="upit" data-upit data-izvor="sajt" data-jezik="sr" data-hvala="Hvala! Upit je primljen — javljamo se uskoro." data-greska="Upit nije poslat. Pozovite nas na 069 201 2001." data-obavezno="Upišite ime i ispravan broj telefona." data-salje="Šaljem…" novalidate>
+      <div class="upit__polja">
+        <label>Ime i prezime ili firma *<input name="ime" autocomplete="name" required maxlength="80"></label>
+        <label>Telefon *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
+        <label>Mesto<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
+        <label>Kultura<input name="kultura" maxlength="80"></label>
+        <label>Površina (ha)<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
+        <label>Kada planirate<select name="kada"><option value="">izaberite mesec</option><option value="januar">januar</option><option value="februar">februar</option><option value="mart">mart</option><option value="april">april</option><option value="maj">maj</option><option value="jun">jun</option><option value="jul">jul</option><option value="avgust">avgust</option><option value="septembar">septembar</option><option value="oktobar">oktobar</option><option value="novembar">novembar</option><option value="decembar">decembar</option></select></label>
+      </div>
+      <fieldset class="upit__proizvodi"><legend>Proizvodi</legend>
+        <label><input type="checkbox" name="proizvodi" value="UAN"> UAN</label>
+        <label><input type="checkbox" name="proizvodi" value="APP"> APP 11-37 (POLYFERT)</label>
+        <label><input type="checkbox" name="proizvodi" value="KTS"> KTS</label>
+        <label><input type="checkbox" name="proizvodi" value="GRANULISANA"> Granulisana đubriva</label>
+        <label><input type="checkbox" name="proizvodi" value="OPREMA"> Oprema (rezervoari, pumpe)</label>
+      </fieldset>
+      <label class="upit__pristanak"><input type="checkbox" name="pristanak"> Želim ponude i obaveštenja putem SMS-a i mejla</label>
+      <div class="upit__zamka" aria-hidden="true"><label>Adresa sajta<input name="sajt_adresa" tabindex="-1" autocomplete="off"></label></div>
+      <button class="dugme dugme--zuto" type="submit">Pošaljite upit</button>
+      <p class="upit__poruka" role="status" aria-live="polite"></p>
+      <p class="napomena">Podatke koristimo samo za odgovor na upit i ponudu. <a href="privatnost.html">Politika privatnosti</a></p>
+    </form>
   </div>
 </section>
 
@@ -179,7 +213,7 @@
   </div>
 </footer>
 
-<script src="js/sajt.js?v=1a1a120156" defer></script>
-<script src="js/oblacic.js?v=1a1a120156" data-chat="https://tranzit-eu.onrender.com/chat?jezik=sr" data-naslov="Asistent Ferti Shop" defer></script>
+<script src="js/sajt.js?v=fd0791e46b" defer></script>
+<script src="js/oblacic.js?v=fd0791e46b" data-chat="https://tranzit-eu.onrender.com/chat?jezik=sr" data-naslov="Asistent Ferti Shop" defer></script>
 </body>
 </html>

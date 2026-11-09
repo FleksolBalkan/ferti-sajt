@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#14301f">
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
 <link rel="apple-touch-icon" href="../img/ikona.png">
-<link rel="stylesheet" href="../css/stil.css?v=1a1a120156">
+<link rel="stylesheet" href="../css/stil.css?v=fd0791e46b">
 <link rel="canonical" href="https://fertishop.onrender.com/hu/kontakt.html">
 <meta property="og:url" content="https://fertishop.onrender.com/hu/kontakt.html">
 <meta property="og:image" content="https://fertishop.onrender.com/img/og.png">
@@ -66,7 +66,7 @@
         <li><a class="meni-veza" href="znanje.html">Tudomány</a></li>
         <li><a class="meni-veza" href="kontakt.html" aria-current="page">Kapcsolat</a></li>
       </ul>
-      <a class="dugme dugme--malo meni__ponuda" href="kontakt.html" data-otvori-chat>Ajánlatot kérek</a>
+      <a class="dugme dugme--malo meni__ponuda" href="kontakt.html#ponuda">Ajánlatot kérek</a>
     </nav>
   </div>
 </header>
@@ -87,6 +87,40 @@
     <p>Hívjon minket, küldjön e-mailt, vagy írjon az oldal asszisztensének — javaslattal jelentkezünk.</p>
   </div>
     <svg class="naslovna__dno" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 60V40C300 0 600 0 900 26s400 30 540 0v34z" fill="#c9cc3f"/></svg>
+  </div>
+</section>
+
+<section class="sekcija" id="ponuda" aria-labelledby="ponuda-naslov">
+  <div class="okvir upit-okvir">
+    <div class="upit-uvod">
+      <span class="oznaka">Ajánlat az Ön táblájára</span>
+      <h2 id="ponuda-naslov">Ajánlatkérés</h2>
+      <p class="uvod">Adja meg nevét és telefonszámát — kultúra és terület szerinti javaslattal jelentkezünk.</p>
+      <p><a class="dugme dugme--malo" href="tel:+381692012001">069 201 2001</a></p>
+      <p class="napomena">Inkább azonnal kérdezne? <a href="kontakt.html" data-otvori-chat>Írjon az asszisztensnek</a></p>
+    </div>
+    <form class="upit" data-upit data-izvor="sajt" data-jezik="hu" data-hvala="Köszönjük! Megkaptuk kérését — hamarosan jelentkezünk." data-greska="A kérés nem ment el. Hívjon minket: 069 201 2001." data-obavezno="Adja meg nevét és érvényes telefonszámát." data-salje="Küldés…" novalidate>
+      <div class="upit__polja">
+        <label>Név vagy cégnév *<input name="ime" autocomplete="name" required maxlength="80"></label>
+        <label>Telefon *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
+        <label>Település<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
+        <label>Kultúra<input name="kultura" maxlength="80"></label>
+        <label>Terület (ha)<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
+        <label>Mikor tervezi<select name="kada"><option value="">válasszon hónapot</option><option value="januar">január</option><option value="februar">február</option><option value="mart">március</option><option value="april">április</option><option value="maj">május</option><option value="jun">június</option><option value="jul">július</option><option value="avgust">augusztus</option><option value="septembar">szeptember</option><option value="oktobar">október</option><option value="novembar">november</option><option value="decembar">december</option></select></label>
+      </div>
+      <fieldset class="upit__proizvodi"><legend>Termékek</legend>
+        <label><input type="checkbox" name="proizvodi" value="UAN"> UAN</label>
+        <label><input type="checkbox" name="proizvodi" value="APP"> APP 11-37 (POLYFERT)</label>
+        <label><input type="checkbox" name="proizvodi" value="KTS"> KTS</label>
+        <label><input type="checkbox" name="proizvodi" value="GRANULISANA"> Granulált műtrágyák</label>
+        <label><input type="checkbox" name="proizvodi" value="OPREMA"> Felszerelés (tartályok, szivattyúk)</label>
+      </fieldset>
+      <label class="upit__pristanak"><input type="checkbox" name="pristanak"> Ajánlatokat és értesítéseket kérek SMS-ben és e-mailben</label>
+      <div class="upit__zamka" aria-hidden="true"><label>Adresa sajta<input name="sajt_adresa" tabindex="-1" autocomplete="off"></label></div>
+      <button class="dugme dugme--zuto" type="submit">Ajánlatot kérek</button>
+      <p class="upit__poruka" role="status" aria-live="polite"></p>
+      <p class="napomena">Adatait csak a kérés megválaszolására és az ajánlathoz használjuk. <a href="../privatnost.html">Adatvédelem (szerbül)</a></p>
+    </form>
   </div>
 </section>
 
@@ -179,7 +213,7 @@
   </div>
 </footer>
 
-<script src="../js/sajt.js?v=1a1a120156" defer></script>
-<script src="../js/oblacic.js?v=1a1a120156" data-chat="https://tranzit-eu.onrender.com/chat?jezik=hu" data-naslov="Ferti Shop asszisztens" defer></script>
+<script src="../js/sajt.js?v=fd0791e46b" defer></script>
+<script src="../js/oblacic.js?v=fd0791e46b" data-chat="https://tranzit-eu.onrender.com/chat?jezik=hu" data-naslov="Ferti Shop asszisztens" defer></script>
 </body>
 </html>

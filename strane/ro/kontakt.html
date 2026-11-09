@@ -7,6 +7,40 @@
   </div>
 </section>
 
+<section class="sekcija" id="ponuda" aria-labelledby="ponuda-naslov">
+  <div class="okvir upit-okvir">
+    <div class="upit-uvod">
+      <span class="oznaka">Ofertă pentru parcela dvs.</span>
+      <h2 id="ponuda-naslov">Cereți o ofertă</h2>
+      <p class="uvod">Lăsați numele și telefonul — revenim cu o propunere pe cultură și hectare.</p>
+      <p><a class="dugme dugme--malo" href="tel:+381692012001">069 201 2001</a></p>
+      <p class="napomena">Preferați să întrebați imediat? <a href="kontakt.html" data-otvori-chat>Scrieți asistentului</a></p>
+    </div>
+    <form class="upit" data-upit data-izvor="sajt" data-jezik="ro" data-hvala="Mulțumim! Cererea a fost primită — revenim în curând." data-greska="Cererea nu a fost trimisă. Sunați-ne la 069 201 2001." data-obavezno="Completați numele și un număr de telefon valid." data-salje="Se trimite…" novalidate>
+      <div class="upit__polja">
+        <label>Nume sau firmă *<input name="ime" autocomplete="name" required maxlength="80"></label>
+        <label>Telefon *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
+        <label>Localitate<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
+        <label>Cultura<input name="kultura" maxlength="80"></label>
+        <label>Suprafața (ha)<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
+        <label>Când planificați<select name="kada"><option value="">alegeți luna</option><option value="januar">ianuarie</option><option value="februar">februarie</option><option value="mart">martie</option><option value="april">aprilie</option><option value="maj">mai</option><option value="jun">iunie</option><option value="jul">iulie</option><option value="avgust">august</option><option value="septembar">septembrie</option><option value="oktobar">octombrie</option><option value="novembar">noiembrie</option><option value="decembar">decembrie</option></select></label>
+      </div>
+      <fieldset class="upit__proizvodi"><legend>Produse</legend>
+        <label><input type="checkbox" name="proizvodi" value="UAN"> UAN</label>
+        <label><input type="checkbox" name="proizvodi" value="APP"> APP 11-37 (POLYFERT)</label>
+        <label><input type="checkbox" name="proizvodi" value="KTS"> KTS</label>
+        <label><input type="checkbox" name="proizvodi" value="GRANULISANA"> Îngrășăminte granulate</label>
+        <label><input type="checkbox" name="proizvodi" value="OPREMA"> Echipamente (rezervoare, pompe)</label>
+      </fieldset>
+      <label class="upit__pristanak"><input type="checkbox" name="pristanak"> Doresc oferte și informări prin SMS și e-mail</label>
+      <div class="upit__zamka" aria-hidden="true"><label>Adresa sajta<input name="sajt_adresa" tabindex="-1" autocomplete="off"></label></div>
+      <button class="dugme dugme--zuto" type="submit">Trimiteți cererea</button>
+      <p class="upit__poruka" role="status" aria-live="polite"></p>
+      <p class="napomena">Folosim datele doar pentru răspuns și ofertă. <a href="../privatnost.html">Confidențialitate (în sârbă)</a></p>
+    </form>
+  </div>
+</section>
+
 <section class="sekcija">
   <div class="okvir">
     <div class="kontakt-mreza">

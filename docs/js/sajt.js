@@ -145,3 +145,30 @@
   }
   linkovi.forEach(function (a) { a.addEventListener('click', function (e) { if (e.ctrlKey || e.metaKey || e.shiftKey) return; e.preventDefault(); otvori(a); }); });
 })();
+
+// FS1 (vlasnik 9.11.2026): obrazac „Zatražite ponudu” → TRANZIT CRM (POST /api/upit): kupac + osoba + događaj + interesovanja, firma dobija mejl „novi upit”
+(function () {
+  var forme = document.querySelectorAll('form[data-upit]');
+  if (!forme.length) return;
+  var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'http://localhost:10099/api/upit' : 'https://tranzit-eu.onrender.com/api/upit';
+  forme.forEach(function (f) {
+    var poruka = f.querySelector('.upit__poruka'), dugme = f.querySelector('button[type=submit]'), tekstDugmeta = dugme.textContent;
+    function javi(t, vrsta) { poruka.textContent = t; poruka.className = 'upit__poruka' + (vrsta ? ' upit__poruka--' + vrsta : ''); }
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var d = {}, el = f.elements;
+      ['ime', 'telefon', 'mesto', 'kultura', 'ha', 'kada', 'sajt_adresa'].forEach(function (k) { if (el[k]) d[k] = el[k].value.trim(); });
+      d.proizvodi = Array.prototype.filter.call(f.querySelectorAll('input[name=proizvodi]'), function (c) { return c.checked; }).map(function (c) { return c.value; });
+      d.pristanak = !!(el.pristanak && el.pristanak.checked);
+      d.izvor = f.getAttribute('data-izvor') || 'sajt'; d.jezik = f.getAttribute('data-jezik') || 'sr';
+      var k = new URLSearchParams(location.search).get('k'); if (k) d.k = k;
+      if (!d.ime || d.telefon.replace(/\D/g, '').length < 8) { javi(f.getAttribute('data-obavezno'), 'greska'); (d.ime ? el.telefon : el.ime).focus(); return; }
+      dugme.disabled = true; dugme.textContent = f.getAttribute('data-salje'); javi('');
+      fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(d) })
+        .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+        .then(function () { f.reset(); javi(f.getAttribute('data-hvala'), 'ok'); })
+        .catch(function () { javi(f.getAttribute('data-greska'), 'greska'); })
+        .then(function () { dugme.disabled = false; dugme.textContent = tekstDugmeta; });
+    });
+  });
+})();

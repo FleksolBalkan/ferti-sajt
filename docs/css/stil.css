@@ -711,3 +711,21 @@ tbody th { font-weight: 600; color: var(--tekst); }
 .uvecanje__zatvori { position: fixed; z-index: 1; top: 12px; right: 14px; width: 42px; height: 42px; border-radius: 50%; border: 0; background: #fff; font-size: 20px; cursor: pointer; box-shadow: 0 2px 10px rgba(0,0,0,.3); }
 /* vlasnik 9.11.2026: u tabeli poređenja proizvoda vrednosti stoje tačno ispod naziva proizvoda (naziv i vrednosti centrirani u koloni) */
 .tabela-proizvoda th.broj, .tabela-proizvoda td.broj { text-align: center; }
+
+/* FS1: obrazac „Zatražite ponudu” */
+.upit-okvir { display: grid; grid-template-columns: 1fr 1.4fr; gap: 32px; align-items: start; }
+.upit { background: #fff; border-radius: 16px; padding: 22px; box-shadow: 0 6px 24px rgba(20, 48, 31, .08); display: grid; gap: 14px; }
+.upit__polja { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.upit label { display: grid; gap: 4px; font-size: .92rem; font-weight: 600; color: #14301f; }
+.upit input:not([type=checkbox]), .upit select { width: 100%; min-width: 0; font: inherit; font-weight: 400; padding: 11px 12px; border: 1px solid #cfd8cc; border-radius: 10px; background: #fff; }
+.upit input:focus, .upit select:focus { outline: 2px solid #37752c; outline-offset: 1px; }
+.upit__proizvodi { border: 0; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 8px 16px; }
+.upit__proizvodi legend { font-weight: 600; font-size: .92rem; margin-bottom: 6px; color: #14301f; }
+.upit__proizvodi label, .upit__pristanak { display: flex !important; gap: 8px; align-items: center; font-weight: 400 !important; }
+.upit input[type=checkbox] { width: 20px; height: 20px; accent-color: #37752c; flex: none; }
+.upit__zamka { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.upit__poruka:empty { display: none; }
+.upit__poruka { margin: 0; padding: 10px 12px; border-radius: 10px; font-weight: 600; }
+.upit__poruka--ok { background: #e7f3e3; color: #28581f; }
+.upit__poruka--greska { background: #fdecea; color: #a1281b; }
+@media (max-width: 760px) { .upit-okvir { grid-template-columns: 1fr; gap: 16px; } .upit__polja { grid-template-columns: 1fr; } .upit { padding: 16px; } }

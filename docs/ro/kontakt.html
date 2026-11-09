@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#14301f">
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
 <link rel="apple-touch-icon" href="../img/ikona.png">
-<link rel="stylesheet" href="../css/stil.css?v=1a1a120156">
+<link rel="stylesheet" href="../css/stil.css?v=fd0791e46b">
 <link rel="canonical" href="https://fertishop.onrender.com/ro/kontakt.html">
 <meta property="og:url" content="https://fertishop.onrender.com/ro/kontakt.html">
 <meta property="og:image" content="https://fertishop.onrender.com/img/og.png">
@@ -66,7 +66,7 @@
         <li><a class="meni-veza" href="znanje.html">Știință</a></li>
         <li><a class="meni-veza" href="kontakt.html" aria-current="page">Contact</a></li>
       </ul>
-      <a class="dugme dugme--malo meni__ponuda" href="kontakt.html" data-otvori-chat>Cereți o ofertă</a>
+      <a class="dugme dugme--malo meni__ponuda" href="kontakt.html#ponuda">Cereți o ofertă</a>
     </nav>
   </div>
 </header>
@@ -87,6 +87,40 @@
     <p>Sunați-ne, trimiteți un e-mail sau scrieți asistentului de pe site — revenim cu o propunere.</p>
   </div>
     <svg class="naslovna__dno" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 60V40C300 0 600 0 900 26s400 30 540 0v34z" fill="#c9cc3f"/></svg>
+  </div>
+</section>
+
+<section class="sekcija" id="ponuda" aria-labelledby="ponuda-naslov">
+  <div class="okvir upit-okvir">
+    <div class="upit-uvod">
+      <span class="oznaka">Ofertă pentru parcela dvs.</span>
+      <h2 id="ponuda-naslov">Cereți o ofertă</h2>
+      <p class="uvod">Lăsați numele și telefonul — revenim cu o propunere pe cultură și hectare.</p>
+      <p><a class="dugme dugme--malo" href="tel:+381692012001">069 201 2001</a></p>
+      <p class="napomena">Preferați să întrebați imediat? <a href="kontakt.html" data-otvori-chat>Scrieți asistentului</a></p>
+    </div>
+    <form class="upit" data-upit data-izvor="sajt" data-jezik="ro" data-hvala="Mulțumim! Cererea a fost primită — revenim în curând." data-greska="Cererea nu a fost trimisă. Sunați-ne la 069 201 2001." data-obavezno="Completați numele și un număr de telefon valid." data-salje="Se trimite…" novalidate>
+      <div class="upit__polja">
+        <label>Nume sau firmă *<input name="ime" autocomplete="name" required maxlength="80"></label>
+        <label>Telefon *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
+        <label>Localitate<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
+        <label>Cultura<input name="kultura" maxlength="80"></label>
+        <label>Suprafața (ha)<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
+        <label>Când planificați<select name="kada"><option value="">alegeți luna</option><option value="januar">ianuarie</option><option value="februar">februarie</option><option value="mart">martie</option><option value="april">aprilie</option><option value="maj">mai</option><option value="jun">iunie</option><option value="jul">iulie</option><option value="avgust">august</option><option value="septembar">septembrie</option><option value="oktobar">octombrie</option><option value="novembar">noiembrie</option><option value="decembar">decembrie</option></select></label>
+      </div>
+      <fieldset class="upit__proizvodi"><legend>Produse</legend>
+        <label><input type="checkbox" name="proizvodi" value="UAN"> UAN</label>
+        <label><input type="checkbox" name="proizvodi" value="APP"> APP 11-37 (POLYFERT)</label>
+        <label><input type="checkbox" name="proizvodi" value="KTS"> KTS</label>
+        <label><input type="checkbox" name="proizvodi" value="GRANULISANA"> Îngrășăminte granulate</label>
+        <label><input type="checkbox" name="proizvodi" value="OPREMA"> Echipamente (rezervoare, pompe)</label>
+      </fieldset>
+      <label class="upit__pristanak"><input type="checkbox" name="pristanak"> Doresc oferte și informări prin SMS și e-mail</label>
+      <div class="upit__zamka" aria-hidden="true"><label>Adresa sajta<input name="sajt_adresa" tabindex="-1" autocomplete="off"></label></div>
+      <button class="dugme dugme--zuto" type="submit">Trimiteți cererea</button>
+      <p class="upit__poruka" role="status" aria-live="polite"></p>
+      <p class="napomena">Folosim datele doar pentru răspuns și ofertă. <a href="../privatnost.html">Confidențialitate (în sârbă)</a></p>
+    </form>
   </div>
 </section>
 
@@ -179,7 +213,7 @@
   </div>
 </footer>
 
-<script src="../js/sajt.js?v=1a1a120156" defer></script>
-<script src="../js/oblacic.js?v=1a1a120156" data-chat="https://tranzit-eu.onrender.com/chat?jezik=ro" data-naslov="Asistent Ferti Shop" defer></script>
+<script src="../js/sajt.js?v=fd0791e46b" defer></script>
+<script src="../js/oblacic.js?v=fd0791e46b" data-chat="https://tranzit-eu.onrender.com/chat?jezik=ro" data-naslov="Asistent Ferti Shop" defer></script>
 </body>
 </html>
