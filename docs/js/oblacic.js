@@ -126,8 +126,8 @@
       ucitava.classList.add('fo-greska');
       poruka.textContent = T.nedostupan;
       veze.textContent = '';
-      veze.appendChild(el('a', { href: 'tel:+381692012001' }, '069 201 2001'));
-      veze.appendChild(el('a', { href: 'tel:+381213411134' }, '021 341 1134'));
+      veze.appendChild(el('a', { href: 'tel:+381692012001' }, '+381 69 201 2001'));
+      veze.appendChild(el('a', { href: 'tel:+381213411134' }, '+381 21 341 1134'));
       var ponovo = el('button', { type: 'button' }, T.ponovo);
       ponovo.addEventListener('click', ucitaj);
       veze.appendChild(ponovo);

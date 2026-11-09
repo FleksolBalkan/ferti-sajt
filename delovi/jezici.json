@@ -49,9 +49,9 @@
       "f_posalji": "Pošaljite upit",
       "f_salje": "Šaljem…",
       "f_hvala": "Hvala! Upit je primljen — javljamo se uskoro.",
-      "f_greska": "Upit nije poslat. Pozovite nas na 069 201 2001.",
+      "f_greska": "Upit nije poslat. Pozovite nas na +381 69 201 2001.",
       "f_obavezno": "Upišite ime i ispravan broj telefona.",
-      "f_pozovite": "Pozovite 069 201 2001",
+      "f_pozovite": "Pozovite +381 69 201 2001",
       "f_meseci": "januar,februar,mart,april,maj,jun,jul,avgust,septembar,oktobar,novembar,decembar"
     }
   },
@@ -105,9 +105,9 @@
       "f_posalji": "Ajánlatot kérek",
       "f_salje": "Küldés…",
       "f_hvala": "Köszönjük! Megkaptuk kérését — hamarosan jelentkezünk.",
-      "f_greska": "A kérés nem ment el. Hívjon minket: 069 201 2001.",
+      "f_greska": "A kérés nem ment el. Hívjon minket: +381 69 201 2001.",
       "f_obavezno": "Adja meg nevét és érvényes telefonszámát.",
-      "f_pozovite": "Hívjon: 069 201 2001",
+      "f_pozovite": "Hívjon: +381 69 201 2001",
       "f_meseci": "január,február,március,április,május,június,július,augusztus,szeptember,október,november,december"
     }
   },
@@ -161,9 +161,9 @@
       "f_posalji": "Trimiteți cererea",
       "f_salje": "Se trimite…",
       "f_hvala": "Mulțumim! Cererea a fost primită — revenim în curând.",
-      "f_greska": "Cererea nu a fost trimisă. Sunați-ne la 069 201 2001.",
+      "f_greska": "Cererea nu a fost trimisă. Sunați-ne la +381 69 201 2001.",
       "f_obavezno": "Completați numele și un număr de telefon valid.",
-      "f_pozovite": "Sunați: 069 201 2001",
+      "f_pozovite": "Sunați: +381 69 201 2001",
       "f_meseci": "ianuarie,februarie,martie,aprilie,mai,iunie,iulie,august,septembrie,octombrie,noiembrie,decembrie"
     }
   }
