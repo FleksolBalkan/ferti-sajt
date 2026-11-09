@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#14301f">
 <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32.png">
 <link rel="apple-touch-icon" href="../img/ikona.png">
-<link rel="stylesheet" href="../css/stil.css?v=fd0791e46b">
+<link rel="stylesheet" href="../css/stil.css?v=d40e9d3218">
 <link rel="canonical" href="https://fertishop.onrender.com/ro/kontakt.html">
 <meta property="og:url" content="https://fertishop.onrender.com/ro/kontakt.html">
 <meta property="og:image" content="https://fertishop.onrender.com/img/og.png">
@@ -41,6 +41,7 @@
 </div>
 
 <header class="zaglavlje">
+<a class="ponuda-traka" href="kontakt.html#ponuda" data-ponuda-otvori><span class="ponuda-traka__tekst">Îngrășăminte lichide pentru sezonul 2027</span><span class="ponuda-traka__dugme">Cereți o ofertă</span></a>
   <div class="okvir zaglavlje__red">
     <a class="znak" href="index.html">
       <img src="../img/logo.png" alt="" width="54" height="72">
@@ -104,7 +105,6 @@
         <label>Nume sau firmă *<input name="ime" autocomplete="name" required maxlength="80"></label>
         <label>Telefon *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
         <label>Localitate<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
-        <label>Cultura<input name="kultura" maxlength="80"></label>
         <label>Suprafața (ha)<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
         <label>Când planificați<select name="kada"><option value="">alegeți luna</option><option value="januar">ianuarie</option><option value="februar">februarie</option><option value="mart">martie</option><option value="april">aprilie</option><option value="maj">mai</option><option value="jun">iunie</option><option value="jul">iulie</option><option value="avgust">august</option><option value="septembar">septembrie</option><option value="oktobar">octombrie</option><option value="novembar">noiembrie</option><option value="decembar">decembrie</option></select></label>
       </div>
@@ -213,7 +213,36 @@
   </div>
 </footer>
 
-<script src="../js/sajt.js?v=fd0791e46b" defer></script>
-<script src="../js/oblacic.js?v=fd0791e46b" data-chat="https://tranzit-eu.onrender.com/chat?jezik=ro" data-naslov="Asistent Ferti Shop" defer></script>
+<!-- FS2 prozor -->
+<div class="ponuda-prozor" id="ponuda-prozor" role="dialog" aria-modal="true" aria-labelledby="pp-naslov" hidden>
+  <div class="ponuda-prozor__kutija">
+    <button class="ponuda-prozor__x" type="button" aria-label="Micșorează fereastra" data-ponuda-smanji>✕</button>
+    <p class="ponuda-prozor__oznaka">Sezonul 2027</p>
+    <h2 id="pp-naslov">Îngrășăminte lichide pentru sezonul 2027: UAN, APP, KTS</h2>
+    <p class="ponuda-prozor__podnaslov">Mai puține pierderi, mai mult în recoltă.</p>
+    <form class="upit upit--prozor" data-upit data-izvor="landing" data-jezik="ro" data-hvala="Mulțumim! Cererea a fost primită — revenim în curând." data-greska="Cererea nu a fost trimisă. Sunați-ne la 069 201 2001." data-obavezno="Completați numele și un număr de telefon valid." data-salje="Se trimite…" novalidate>
+      <div class="upit__polja">
+        <label>Nume sau firmă *<input name="ime" autocomplete="name" required maxlength="80"></label>
+        <label>Telefon *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
+        <label>Localitate<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
+        <label>Suprafața (ha)<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
+      </div>
+      <fieldset class="upit__proizvodi"><legend>Produse</legend>
+        <label><input type="checkbox" name="proizvodi" value="UAN"> UAN</label>
+        <label><input type="checkbox" name="proizvodi" value="APP"> APP 11-37</label>
+        <label><input type="checkbox" name="proizvodi" value="KTS"> KTS</label>
+      </fieldset>
+      <label class="upit__kada">Când planificați<select name="kada" data-meseci="ianuarie,februarie,martie,aprilie,mai,iunie,iulie,august,septembrie,octombrie,noiembrie,decembrie"><option value="">luna</option></select></label>
+      <label class="upit__pristanak"><input type="checkbox" name="pristanak"> Doresc oferte și informări prin SMS și e-mail</label>
+      <div class="upit__zamka" aria-hidden="true"><label>Adresa sajta<input name="sajt_adresa" tabindex="-1" autocomplete="off"></label></div>
+      <button class="dugme dugme--zuto" type="submit">Trimiteți cererea</button>
+      <p class="upit__poruka" role="status" aria-live="polite"></p>
+    </form>
+    <a class="ponuda-prozor__poziv" href="tel:+381692012001">Sunați: 069 201 2001</a>
+  </div>
+</div>
+<!-- /FS2 prozor -->
+<script src="../js/sajt.js?v=d40e9d3218" defer></script>
+<script src="../js/oblacic.js?v=d40e9d3218" data-chat="https://tranzit-eu.onrender.com/chat?jezik=ro" data-naslov="Asistent Ferti Shop" defer></script>
 </body>
 </html>

@@ -729,3 +729,24 @@ tbody th { font-weight: 600; color: var(--tekst); }
 .upit__poruka--ok { background: #e7f3e3; color: #28581f; }
 .upit__poruka--greska { background: #fdecea; color: #a1281b; }
 @media (max-width: 760px) { .upit-okvir { grid-template-columns: 1fr; gap: 16px; } .upit__polja { grid-template-columns: 1fr; } .upit { padding: 16px; } }
+
+/* FS2: traka „Zatražite ponudu” na vrhu (u lepljivom zaglavlju) i prozor na ulasku */
+.ponuda-traka { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 7px 16px; background: var(--zuta, #c9cc3f); color: #14301f; text-decoration: none; font-weight: 700; font-size: 14px; line-height: 1.2; }
+.ponuda-traka:hover, .ponuda-traka:focus-visible { background: #d6d94f; }
+.ponuda-traka__dugme { background: #14301f; color: #fff; border-radius: 999px; padding: 5px 12px; white-space: nowrap; }
+@media (max-width: 520px) { .ponuda-traka__tekst { display: none; } .ponuda-traka { padding: 6px 12px; } }
+.ponuda-prozor { position: fixed; inset: 0; z-index: 2147483100; background: rgba(10, 24, 15, .55); display: flex; align-items: center; justify-content: center; padding: 16px; }
+.ponuda-prozor[hidden] { display: none; }
+.ponuda-prozor__kutija { position: relative; width: 100%; max-width: 440px; max-height: calc(100vh - 32px); max-height: calc(100dvh - 32px); overflow: auto; background: #fff; border-radius: 18px; padding: 22px 20px 18px; box-shadow: 0 20px 60px rgba(0, 0, 0, .3); }
+.ponuda-prozor__x { position: absolute; top: 10px; right: 10px; width: 40px; height: 40px; border: 0; border-radius: 50%; background: #eef2ec; color: #14301f; font-size: 18px; cursor: pointer; }
+.ponuda-prozor__oznaka { margin: 0 0 4px; color: #37752c; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; font-size: 12px; }
+.ponuda-prozor h2 { margin: 0 44px 6px 0; font-size: 1.35rem; line-height: 1.25; color: #14301f; }
+.ponuda-prozor__podnaslov { margin: 0 0 12px; color: #37752c; font-weight: 700; }
+.upit--prozor { box-shadow: none; padding: 0; gap: 10px; }
+.upit--prozor .upit__polja { gap: 8px; }
+.upit--prozor input:not([type=checkbox]), .upit--prozor select { padding: 9px 10px; }
+.upit__kada { max-width: 220px; }
+.ponuda-prozor__poziv { display: block; text-align: center; margin-top: 10px; font-weight: 700; color: #14301f; }
+html.ponuda-otvorena { overflow: hidden; }
+.ponuda-prozor .upit--prozor .upit__polja { grid-template-columns: 1fr 1fr; }
+html.ponuda-otvorena .fo-dugme { display: none !important; }

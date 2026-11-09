@@ -32,6 +32,7 @@
 </div>
 
 <header class="zaglavlje">
+<a class="ponuda-traka" href="kontakt.html#ponuda" data-ponuda-otvori><span class="ponuda-traka__tekst">{{T:pp_traka}}</span><span class="ponuda-traka__dugme">{{T:zatrazite_ponudu}}</span></a>
   <div class="okvir zaglavlje__red">
     <a class="znak" href="index.html">
       <img src="{{KOREN}}img/logo.png" alt="" width="54" height="72">
@@ -112,6 +113,35 @@
   </div>
 </footer>
 
+<!-- FS2 prozor -->
+<div class="ponuda-prozor" id="ponuda-prozor" role="dialog" aria-modal="true" aria-labelledby="pp-naslov" hidden>
+  <div class="ponuda-prozor__kutija">
+    <button class="ponuda-prozor__x" type="button" aria-label="{{T:pp_smanji}}" data-ponuda-smanji>✕</button>
+    <p class="ponuda-prozor__oznaka">{{T:pp_oznaka}}</p>
+    <h2 id="pp-naslov">{{T:pp_naslov}}</h2>
+    <p class="ponuda-prozor__podnaslov">{{T:pp_podnaslov}}</p>
+    <form class="upit upit--prozor" data-upit data-izvor="landing" data-jezik="{{JEZIK}}" data-hvala="{{T:f_hvala}}" data-greska="{{T:f_greska}}" data-obavezno="{{T:f_obavezno}}" data-salje="{{T:f_salje}}" novalidate>
+      <div class="upit__polja">
+        <label>{{T:f_ime}} *<input name="ime" autocomplete="name" required maxlength="80"></label>
+        <label>{{T:f_tel}} *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
+        <label>{{T:f_mesto}}<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
+        <label>{{T:f_ha}}<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
+      </div>
+      <fieldset class="upit__proizvodi"><legend>{{T:f_proizvodi}}</legend>
+        <label><input type="checkbox" name="proizvodi" value="UAN"> UAN</label>
+        <label><input type="checkbox" name="proizvodi" value="APP"> APP 11-37</label>
+        <label><input type="checkbox" name="proizvodi" value="KTS"> KTS</label>
+      </fieldset>
+      <label class="upit__kada">{{T:f_kada}}<select name="kada" data-meseci="{{T:f_meseci}}"><option value="">{{T:f_kada_prazno}}</option></select></label>
+      <label class="upit__pristanak"><input type="checkbox" name="pristanak"> {{T:f_pristanak}}</label>
+      <div class="upit__zamka" aria-hidden="true"><label>Adresa sajta<input name="sajt_adresa" tabindex="-1" autocomplete="off"></label></div>
+      <button class="dugme dugme--zuto" type="submit">{{T:f_posalji}}</button>
+      <p class="upit__poruka" role="status" aria-live="polite"></p>
+    </form>
+    <a class="ponuda-prozor__poziv" href="tel:+381692012001">{{T:f_pozovite}}</a>
+  </div>
+</div>
+<!-- /FS2 prozor -->
 <script src="{{KOREN}}js/sajt.js?v={{VERZIJA}}" defer></script>
 <script src="{{KOREN}}js/oblacic.js?v={{VERZIJA}}" data-chat="https://tranzit-eu.onrender.com/chat?jezik={{JEZIK}}" data-naslov="{{T:asistent_naslov}}" defer></script>
 </body>
