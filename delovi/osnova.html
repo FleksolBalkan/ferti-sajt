@@ -117,28 +117,39 @@
 <div class="ponuda-prozor" id="ponuda-prozor" role="dialog" aria-modal="true" aria-labelledby="pp-naslov" hidden>
   <div class="ponuda-prozor__kutija">
     <button class="ponuda-prozor__x" type="button" aria-label="{{T:pp_smanji}}" data-ponuda-smanji>✕</button>
-    <p class="ponuda-prozor__oznaka">{{T:pp_oznaka}}</p>
-    <h2 id="pp-naslov">{{T:pp_naslov}}</h2>
-    <p class="ponuda-prozor__podnaslov">{{T:pp_podnaslov}}</p>
-    <form class="upit upit--prozor" data-upit data-izvor="landing" data-jezik="{{JEZIK}}" data-hvala="{{T:f_hvala}}" data-greska="{{T:f_greska}}" data-obavezno="{{T:f_obavezno}}" data-salje="{{T:f_salje}}" novalidate>
-      <div class="upit__polja">
-        <label>{{T:f_ime}} *<input name="ime" autocomplete="name" required maxlength="80"></label>
-        <label>{{T:f_tel}} *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
-        <label>{{T:f_mesto}}<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
-        <label>{{T:f_ha}}<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
-      </div>
-      <fieldset class="upit__proizvodi"><legend>{{T:f_proizvodi}}</legend>
-        <label><input type="checkbox" name="proizvodi" value="UAN"> UAN</label>
-        <label><input type="checkbox" name="proizvodi" value="APP"> APP 11-37</label>
-        <label><input type="checkbox" name="proizvodi" value="KTS"> KTS</label>
-      </fieldset>
-      <label class="upit__kada">{{T:f_kada}}<select name="kada" data-meseci="{{T:f_meseci}}"><option value="">{{T:f_kada_prazno}}</option></select></label>
-      <label class="upit__pristanak"><input type="checkbox" name="pristanak"> {{T:f_pristanak}}</label>
-      <div class="upit__zamka" aria-hidden="true"><label>Adresa sajta<input name="sajt_adresa" tabindex="-1" autocomplete="off"></label></div>
-      <button class="dugme dugme--zuto" type="submit">{{T:f_posalji}}</button>
-      <p class="upit__poruka" role="status" aria-live="polite"></p>
-    </form>
-    <a class="ponuda-prozor__poziv" href="tel:+381692012001">{{T:f_pozovite}}</a>
+    <!-- FS4 (vlasnik 10.11.2026): baner kao prvi utisak; slika po jeziku u jezici.json (pp_baner) -->
+    <picture class="ponuda-prozor__baner">
+      <source type="image/webp" srcset="{{KOREN}}{{T:pp_baner}}-800.webp 800w, {{KOREN}}{{T:pp_baner}}-1280.webp 1280w" sizes="(max-width: 880px) 100vw, 880px">
+      <img src="{{KOREN}}{{T:pp_baner}}-1280.jpg" srcset="{{KOREN}}{{T:pp_baner}}-800.jpg 800w, {{KOREN}}{{T:pp_baner}}-1280.jpg 1280w" sizes="(max-width: 880px) 100vw, 880px" width="1672" height="941" alt="{{T:pp_baner_opis}}" decoding="async" fetchpriority="high">
+    </picture>
+    <div class="ponuda-prozor__telo">
+      <p class="ponuda-prozor__oznaka">{{T:pp_oznaka}}</p>
+      <h2 id="pp-naslov">{{T:pp_naslov}}</h2>
+      <p class="ponuda-prozor__podnaslov">{{T:pp_podnaslov}}</p>
+      <form class="upit upit--prozor" data-upit data-izvor="landing" data-jezik="{{JEZIK}}" data-hvala="{{T:f_hvala}}" data-greska="{{T:f_greska}}" data-obavezno="{{T:f_obavezno}}" data-salje="{{T:f_salje}}" novalidate>
+        <div class="upit__polja">
+          <label>{{T:f_ime}} *<input name="ime" autocomplete="name" required maxlength="80"></label>
+          <label>{{T:f_tel}} *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
+          <label>{{T:f_mesto}}<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
+          <label>{{T:f_ha}}<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
+        </div>
+        <div class="upit__red">
+          <fieldset class="upit__proizvodi"><legend>{{T:f_proizvodi}}</legend>
+            <label><input type="checkbox" name="proizvodi" value="UAN"> UAN</label>
+            <label><input type="checkbox" name="proizvodi" value="APP"> APP 11-37</label>
+            <label><input type="checkbox" name="proizvodi" value="KTS"> KTS</label>
+          </fieldset>
+          <label class="upit__kada">{{T:f_kada}}<select name="kada" data-meseci="{{T:f_meseci}}"><option value="">{{T:f_kada_prazno}}</option></select></label>
+        </div>
+        <label class="upit__pristanak"><input type="checkbox" name="pristanak"> {{T:f_pristanak}}</label>
+        <div class="upit__zamka" aria-hidden="true"><label>Adresa sajta<input name="sajt_adresa" tabindex="-1" autocomplete="off"></label></div>
+        <div class="upit__kraj">
+          <button class="dugme dugme--zuto" type="submit">{{T:f_posalji}}</button>
+          <a class="ponuda-prozor__poziv" href="tel:+381692012001">{{T:f_pozovite}}</a>
+        </div>
+        <p class="upit__poruka" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 </div>
 <!-- /FS2 prozor -->

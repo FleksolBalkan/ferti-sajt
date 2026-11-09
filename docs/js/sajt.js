@@ -188,7 +188,9 @@
   function otvori() {
     pre = document.activeElement; prozor.hidden = false; document.documentElement.classList.add('ponuda-otvorena');
     trake.forEach(function (t) { t.setAttribute('aria-expanded', 'true'); });
-    var prvo = forma && forma.querySelector('input[name=ime]'); if (prvo && !prvo.value) setTimeout(function () { prvo.focus(); }, 50);
+    // FS4: fokus na X bez pomeranja — baner ostaje vidljiv od vrha, a na telefonu se ne otvara tastatura
+    var kut = prozor.querySelector('.ponuda-prozor__kutija'); if (kut) kut.scrollTop = 0;
+    var x = prozor.querySelector('[data-ponuda-smanji]'); if (x) setTimeout(function () { try { x.focus({ preventScroll: true }); } catch (e) { x.focus(); } }, 50);
   }
   function smanji() {
     prozor.hidden = true; document.documentElement.classList.remove('ponuda-otvorena'); cuvaj('fs_ponuda', 'smanjen');

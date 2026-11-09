@@ -13,7 +13,7 @@
 <meta name="theme-color" content="#14301f">
 <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
 <link rel="apple-touch-icon" href="img/ikona.png">
-<link rel="stylesheet" href="css/stil.css?v=9df4ad63c2">
+<link rel="stylesheet" href="css/stil.css?v=c9007e4e05">
 <link rel="canonical" href="https://fertishop.onrender.com/kontakt.html">
 <meta property="og:url" content="https://fertishop.onrender.com/kontakt.html">
 <meta property="og:image" content="https://fertishop.onrender.com/img/og.png">
@@ -217,32 +217,43 @@
 <div class="ponuda-prozor" id="ponuda-prozor" role="dialog" aria-modal="true" aria-labelledby="pp-naslov" hidden>
   <div class="ponuda-prozor__kutija">
     <button class="ponuda-prozor__x" type="button" aria-label="Smanji prozor" data-ponuda-smanji>✕</button>
-    <p class="ponuda-prozor__oznaka">Sezona 2027</p>
-    <h2 id="pp-naslov">Tečna đubriva za sezonu 2027: UAN, APP, KTS</h2>
-    <p class="ponuda-prozor__podnaslov">Manje gubitaka, više u prinosu.</p>
-    <form class="upit upit--prozor" data-upit data-izvor="landing" data-jezik="sr" data-hvala="Hvala! Upit je primljen — javljamo se uskoro." data-greska="Upit nije poslat. Pozovite nas na +381 69 201 2001." data-obavezno="Upišite ime i ispravan broj telefona." data-salje="Šaljem…" novalidate>
-      <div class="upit__polja">
-        <label>Ime ili firma *<input name="ime" autocomplete="name" required maxlength="80"></label>
-        <label>Telefon *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
-        <label>Mesto<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
-        <label>Površina (ha)<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
-      </div>
-      <fieldset class="upit__proizvodi"><legend>Proizvodi</legend>
-        <label><input type="checkbox" name="proizvodi" value="UAN"> UAN</label>
-        <label><input type="checkbox" name="proizvodi" value="APP"> APP 11-37</label>
-        <label><input type="checkbox" name="proizvodi" value="KTS"> KTS</label>
-      </fieldset>
-      <label class="upit__kada">Kada planirate<select name="kada" data-meseci="januar,februar,mart,april,maj,jun,jul,avgust,septembar,oktobar,novembar,decembar"><option value="">mesec</option></select></label>
-      <label class="upit__pristanak"><input type="checkbox" name="pristanak"> Želim ponude i obaveštenja putem SMS-a i mejla</label>
-      <div class="upit__zamka" aria-hidden="true"><label>Adresa sajta<input name="sajt_adresa" tabindex="-1" autocomplete="off"></label></div>
-      <button class="dugme dugme--zuto" type="submit">Pošaljite upit</button>
-      <p class="upit__poruka" role="status" aria-live="polite"></p>
-    </form>
-    <a class="ponuda-prozor__poziv" href="tel:+381692012001">Pozovite +381 69 201 2001</a>
+    <!-- FS4 (vlasnik 10.11.2026): baner kao prvi utisak; slika po jeziku u jezici.json (pp_baner) -->
+    <picture class="ponuda-prozor__baner">
+      <source type="image/webp" srcset="img/baner-ulaz-800.webp 800w, img/baner-ulaz-1280.webp 1280w" sizes="(max-width: 880px) 100vw, 880px">
+      <img src="img/baner-ulaz-1280.jpg" srcset="img/baner-ulaz-800.jpg 800w, img/baner-ulaz-1280.jpg 1280w" sizes="(max-width: 880px) 100vw, 880px" width="1672" height="941" alt="Ferti Shop — sredstva za ishranu biljaka, alati i oprema: precizna ishrana biljaka za veće prinose, tehnička podrška uz Vas na svakom koraku" decoding="async" fetchpriority="high">
+    </picture>
+    <div class="ponuda-prozor__telo">
+      <p class="ponuda-prozor__oznaka">Sezona 2027</p>
+      <h2 id="pp-naslov">Tečna đubriva za sezonu 2027: UAN, APP, KTS</h2>
+      <p class="ponuda-prozor__podnaslov">Manje gubitaka, više u prinosu.</p>
+      <form class="upit upit--prozor" data-upit data-izvor="landing" data-jezik="sr" data-hvala="Hvala! Upit je primljen — javljamo se uskoro." data-greska="Upit nije poslat. Pozovite nas na +381 69 201 2001." data-obavezno="Upišite ime i ispravan broj telefona." data-salje="Šaljem…" novalidate>
+        <div class="upit__polja">
+          <label>Ime ili firma *<input name="ime" autocomplete="name" required maxlength="80"></label>
+          <label>Telefon *<input name="telefon" type="tel" autocomplete="tel" inputmode="tel" required maxlength="40"></label>
+          <label>Mesto<input name="mesto" autocomplete="address-level2" maxlength="80"></label>
+          <label>Površina (ha)<input name="ha" type="number" min="0" step="1" inputmode="decimal"></label>
+        </div>
+        <div class="upit__red">
+          <fieldset class="upit__proizvodi"><legend>Proizvodi</legend>
+            <label><input type="checkbox" name="proizvodi" value="UAN"> UAN</label>
+            <label><input type="checkbox" name="proizvodi" value="APP"> APP 11-37</label>
+            <label><input type="checkbox" name="proizvodi" value="KTS"> KTS</label>
+          </fieldset>
+          <label class="upit__kada">Kada planirate<select name="kada" data-meseci="januar,februar,mart,april,maj,jun,jul,avgust,septembar,oktobar,novembar,decembar"><option value="">mesec</option></select></label>
+        </div>
+        <label class="upit__pristanak"><input type="checkbox" name="pristanak"> Želim ponude i obaveštenja putem SMS-a i mejla</label>
+        <div class="upit__zamka" aria-hidden="true"><label>Adresa sajta<input name="sajt_adresa" tabindex="-1" autocomplete="off"></label></div>
+        <div class="upit__kraj">
+          <button class="dugme dugme--zuto" type="submit">Pošaljite upit</button>
+          <a class="ponuda-prozor__poziv" href="tel:+381692012001">Pozovite +381 69 201 2001</a>
+        </div>
+        <p class="upit__poruka" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 </div>
 <!-- /FS2 prozor -->
-<script src="js/sajt.js?v=9df4ad63c2" defer></script>
-<script src="js/oblacic.js?v=9df4ad63c2" data-chat="https://tranzit-eu.onrender.com/chat?jezik=sr" data-naslov="Asistent Ferti Shop" defer></script>
+<script src="js/sajt.js?v=c9007e4e05" defer></script>
+<script src="js/oblacic.js?v=c9007e4e05" data-chat="https://tranzit-eu.onrender.com/chat?jezik=sr" data-naslov="Asistent Ferti Shop" defer></script>
 </body>
 </html>
