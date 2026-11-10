@@ -160,7 +160,7 @@
       ['ime', 'telefon', 'mesto', 'kultura', 'ha', 'kada', 'sajt_adresa'].forEach(function (k) { if (el[k]) d[k] = el[k].value.trim(); });
       d.proizvodi = Array.prototype.filter.call(f.querySelectorAll('input[name=proizvodi]'), function (c) { return c.checked; }).map(function (c) { return c.value; });
       d.pristanak = !!(el.pristanak && el.pristanak.checked);
-      d.izvor = f.getAttribute('data-izvor') || 'sajt'; d.jezik = f.getAttribute('data-jezik') || 'sr';
+      d.izvor = f.getAttribute('data-izvor') || 'sajt'; d.jezik = f.getAttribute('data-jezik') || 'sr'; d.obrazac = f.getAttribute('data-obrazac') || null;
       var q = new URLSearchParams(location.search), k = q.get('k') || sessionStorage.getItem('fs_k'), c = q.get('c') || sessionStorage.getItem('fs_c'); if (k) d.k = k; if (c) d.c = c;
       if (!d.ime || d.telefon.replace(/\D/g, '').length < 8) { javi(f.getAttribute('data-obavezno'), 'greska'); (d.ime ? el.telefon : el.ime).focus(); return; }
       dugme.disabled = true; dugme.textContent = f.getAttribute('data-salje'); javi('');
@@ -173,18 +173,37 @@
   });
 })();
 
-// FS2 (vlasnik 9.11.2026): prozor „Zatražite ponudu” se prvi otvara na ulasku na sajt; X ga smanjuje u traku na vrhu (uvek vidljiva), klik na traku ga vraća.
-// Otvara se jednom po poseti (sessionStorage), ne na strani Kontakt (tamo je obrazac). Lični link ?k=…&c=… popunjava ime i telefon i beleži „klik”.
+// FS2/FS5 (vlasnik 9. i 10.11.2026): prozor „Zatražite ponudu”.
+//   Telefon (≤ 760 px): NIKAD se ne otvara sam (Google: nametljivi prozori) — stalna traka pri dnu ga otvara na klik.
+//   Računar: sam se otvara tek posle 50 % skrola ili 30 s, jednom po posetiocu (localStorage pamti da je zatvoren); ne na strani Kontakt.
+//   Strana /ponuda (ponuda.html): baner i obrazac su deo strane, prozora nema.
+//   Lični link ?k=…&c=… (kampanja) popunjava ime i telefon u svakom obrascu na strani i beleži „klik”.
 (function () {
+  var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'http://localhost:10099/api/upit' : 'https://tranzit-eu.onrender.com/api/upit';
+  var forme = document.querySelectorAll('form[data-upit]');
+  var SR = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
+  forme.forEach(function (f) {
+    var sel = f.querySelector('select[name=kada][data-meseci]'); if (!sel || sel.options.length > 1) return;
+    sel.getAttribute('data-meseci').split(',').forEach(function (m, i) { if (!m || !SR[i]) return; var op = document.createElement('option'); op.value = SR[i]; op.textContent = m.trim(); sel.appendChild(op); });
+  });
+  function cuvaj(k, v) { try { sessionStorage.setItem(k, v); } catch (e) { /* privatni režim */ } }
+  function trajno(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+  // lični link iz kampanje: zapamti za celu posetu, popuni ime i telefon, upiši klik
+  var q = new URLSearchParams(location.search), k = q.get('k'), licni = !!(k && /^[a-f0-9]{32}$/.test(k));
+  if (licni) {
+    cuvaj('fs_k', k); if (q.get('c')) cuvaj('fs_c', q.get('c'));
+    fetch(API + '/k/' + k + (q.get('c') ? '?c=' + encodeURIComponent(q.get('c')) : '')).then(function (r) { return r.ok ? r.json() : null; }).then(function (o) {
+      if (!o) return;
+      forme.forEach(function (f) {
+        if (o.ime && f.elements.ime && !f.elements.ime.value) f.elements.ime.value = o.ime;
+        if (o.telefon && f.elements.telefon && !f.elements.telefon.value) f.elements.telefon.value = o.telefon;
+      });
+    }).catch(function () {});
+  }
   var prozor = document.getElementById('ponuda-prozor');
   if (!prozor) return;
-  var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'http://localhost:10099/api/upit' : 'https://tranzit-eu.onrender.com/api/upit';
-  var trake = document.querySelectorAll('[data-ponuda-otvori]'), forma = prozor.querySelector('form'), pre = null;
-  var sel = prozor.querySelector('select[name=kada]');
-  if (sel) { var sr = ['januar', 'februar', 'mart', 'april', 'maj', 'jun', 'jul', 'avgust', 'septembar', 'oktobar', 'novembar', 'decembar'];
-    (sel.getAttribute('data-meseci') || '').split(',').forEach(function (m, i) { if (!m || !sr[i]) return; var op = document.createElement('option'); op.value = sr[i]; op.textContent = m.trim(); sel.appendChild(op); }); }
-  function cuvaj(k, v) { try { sessionStorage.setItem(k, v); } catch (e) { /* privatni režim */ } }
-  function citaj(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+  var trake = document.querySelectorAll('[data-ponuda-otvori]'), pre = null;
+  var mobilni = window.matchMedia && window.matchMedia('(max-width: 760px)').matches;
   function otvori() {
     pre = document.activeElement; prozor.hidden = false; document.documentElement.classList.add('ponuda-otvorena');
     trake.forEach(function (t) { t.setAttribute('aria-expanded', 'true'); });
@@ -193,7 +212,7 @@
     var x = prozor.querySelector('[data-ponuda-smanji]'); if (x) setTimeout(function () { try { x.focus({ preventScroll: true }); } catch (e) { x.focus(); } }, 50);
   }
   function smanji() {
-    prozor.hidden = true; document.documentElement.classList.remove('ponuda-otvorena'); cuvaj('fs_ponuda', 'smanjen');
+    prozor.hidden = true; document.documentElement.classList.remove('ponuda-otvorena'); trajno('fs_ponuda_zatvoren', '1');
     trake.forEach(function (t) { t.setAttribute('aria-expanded', 'false'); });
     if (pre && pre.focus) pre.focus();
   }
@@ -201,17 +220,21 @@
   prozor.querySelector('[data-ponuda-smanji]').addEventListener('click', smanji);
   prozor.addEventListener('click', function (e) { if (e.target === prozor) smanji(); });
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !prozor.hidden) smanji(); });
-  // lični link iz kampanje: zapamti za celu posetu, popuni ime i telefon, upiši klik
-  var q = new URLSearchParams(location.search), k = q.get('k');
-  if (k && /^[a-f0-9]{32}$/.test(k)) {
-    cuvaj('fs_k', k); if (q.get('c')) cuvaj('fs_c', q.get('c'));
-    fetch(API + '/k/' + k + (q.get('c') ? '?c=' + encodeURIComponent(q.get('c')) : '')).then(function (r) { return r.ok ? r.json() : null; }).then(function (o) {
-      if (!o || !forma) return;
-      if (o.ime && !forma.elements.ime.value) forma.elements.ime.value = o.ime;
-      if (o.telefon && !forma.elements.telefon.value) forma.elements.telefon.value = o.telefon;
-    }).catch(function () {});
-    otvori(); return;
+  // samo računar: posle 50 % skrola ili 30 s, jednom po posetiocu; lični link (stari, na početnu) otvara odmah
+  if (mobilni || /kontakt(\.html)?$/.test(location.pathname)) return;
+  if (licni) { otvori(); return; }
+  if (trajno('fs_ponuda_zatvoren')) return;
+  var gotovo = false, sat = null;
+  function auto() {
+    if (gotovo) return; gotovo = true; clearTimeout(sat); window.removeEventListener('scroll', naSkrol);
+    if (!trajno('fs_ponuda_zatvoren') && prozor.hidden) otvori();
   }
-  var naKontaktu = /kontakt\.html$/.test(location.pathname);
-  if (!citaj('fs_ponuda') && !naKontaktu) otvori();
+  function naSkrol() {
+    var d = document.documentElement, max = d.scrollHeight - window.innerHeight;
+    if (max > 0 && window.scrollY / max >= 0.5) auto();
+  }
+  sat = setTimeout(auto, 30000);
+  window.addEventListener('scroll', naSkrol, { passive: true });
+  // slika banera (lazy u skrivenom prozoru) se učita u miru posle strane, da prozor ne čeka sliku
+  window.addEventListener('load', function () { var im = prozor.querySelector('img[loading=lazy]'); if (im) setTimeout(function () { im.loading = 'eager'; }, 1500); });
 })();

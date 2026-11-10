@@ -25,6 +25,10 @@ const izlaz = join(koren, 'docs');
 const novo = join(koren, 'docs.novo');
 const osnova = readFileSync(join(koren, 'delovi', 'osnova.html'), 'utf8');
 const jezici = JSON.parse(readFileSync(join(koren, 'delovi', 'jezici.json'), 'utf8'));
+// FS5: baner + obrazac „Zatražite ponudu” — {{PONUDA_OBRAZAC}} u osnova.html (prozor) i u strani ponuda.html (deo strane).
+// Strana sa "bezProzora": true u zaglavlju nema ni prozor ni trake (osnova: <!-- FS2 prozor -->…, <!-- FS2 traka -->…).
+const PONUDA = readFileSync(join(koren, 'delovi', 'ponuda-obrazac.html'), 'utf8');
+const ponudaDeo = (h, obrazac, slika) => PONUDA.replaceAll('{{PP_H}}', h).replaceAll('{{PP_OBRAZAC}}', obrazac).replaceAll('{{PP_SLIKA}}', slika);
 const godina = String(new Date().getFullYear());
 // {{VERZIJA}}: otisak stila i skripti — posle izmene pregledač i CDN uzimaju novi fajl (ne stari iz keša)
 const VERZIJA = createHash('sha256').update(['css/stil.css', 'js/sajt.js', 'js/oblacic.js'].map(f => readFileSync(join(koren, 'staticno', f), 'utf8')).join('\n')).digest('hex').slice(0, 10);
@@ -133,7 +137,11 @@ for (const j of Object.keys(jezici)) {
     }
 
     // funkcije kao zamena: znak $ u tekstu se ne tumači kao poseban obrazac
-    let html = osnova
+    let osn = osnova;
+    if (podaci.bezProzora) osn = osn.replace(/<!-- FS2 prozor -->[\s\S]*?<!-- \/FS2 prozor -->/, '').replace(/<!-- FS2 traka -->[\s\S]*?<!-- \/FS2 traka -->/, '');
+    osn = osn.replace('{{PONUDA_OBRAZAC}}', () => ponudaDeo('h2', 'prozor', 'loading="lazy"'))
+      .replace('{{SADRZAJ}}', () => naslovna(ime, sadrzaj, KOREN).replace('{{PONUDA_OBRAZAC}}', () => ponudaDeo('h1', 'strana', 'fetchpriority="high"')));
+    let html = osn
       .replace(/\{\{T:([a-z_]+)\}\}/g, (_, k) => {
         const v = J.t[k] ?? jezici[GLAVNI].t[k];
         if (v == null) throw new Error(`jezici.json: nema teksta "${k}"`);
@@ -148,8 +156,7 @@ for (const j of Object.keys(jezici)) {
       .replaceAll('{{GODINA}}', () => godina)
       .replaceAll('{{VERZIJA}}', () => VERZIJA)
       .replace('{{JEZICI}}', () => izborJezika)
-      .replace('{{DODATNO_ZAGLAVLJE}}', () => [meta, podaci.dodatno || ''].filter(Boolean).join('\n'))
-      .replace('{{SADRZAJ}}', () => naslovna(ime, sadrzaj, KOREN).replaceAll('{{KOREN}}', KOREN));
+      .replace('{{DODATNO_ZAGLAVLJE}}', () => [meta, podaci.dodatno || ''].filter(Boolean).join('\n'));
     // stavka menija za ovu stranu dobija aria-current
     html = html.split(`<a class="meni-veza" href="${ime}"`).join(`<a class="meni-veza" href="${ime}" aria-current="page"`);
     if (podaci.noindex) html = html.replace('</title>', '</title>\n<meta name="robots" content="noindex">');
