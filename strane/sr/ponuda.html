@@ -3,4 +3,94 @@
   <div class="ponuda-prozor__kutija ponuda-prozor__kutija--strana">
 {{PONUDA_OBRAZAC}}
   </div>
+
+  <!-- FS6 (vlasnik 10.11.2026): blokovi ispod obrasca. Proizvodi: tekst sa strana Proizvodi i Primena, KTS iz tehničkog lista proizvođača; brojke i izvori sa početne strane. -->
+  <div class="pb">
+    <section class="pb-deo" aria-labelledby="pb-proizvodi">
+      <span class="oznaka">Proizvodi</span>
+      <h2 id="pb-proizvodi">Tri tečna đubriva za sezonu 2027</h2>
+      <div class="pb-kartice">
+        <article class="pb-kartica">
+          <h3>UAN 32</h3>
+          <p>Tečni azot u tri oblika: nitratni deluje odmah, amonijačni brzo, amidni produženo.</p>
+          <p class="pb-kada"><strong>Kada:</strong> pre setve i u prihranama — strna žita, uljana repica, kukuruz; sapnicama sa krupnim kapima.</p>
+        </article>
+        <article class="pb-kartica">
+          <h3>APP 11-37 <small>POLYFERT</small></h3>
+          <p>Fosfor i azot u potpuno rastvorljivom obliku — fosfor koji duže ostaje pristupačan biljci, posebno u traci i na karbonatnom zemljištu.</p>
+          <p class="pb-kada"><strong>Kada:</strong> na setvi, u traci 5 cm sa strane i 5 cm ispod semena — za prve faze rasta.</p>
+        </article>
+        <article class="pb-kartica">
+          <h3>KTS <small>0-0-25-17S</small></h3>
+          <p>Kalijum i sumpor u jednom bistrom rastvoru bez hlorida — i za kulture osetljive na hlor.</p>
+          <p class="pb-kada"><strong>Kada:</strong> na setvi u startnoj mešavini sa APP-om ili UAN-om (pre mešanja proba u tegli) i folijarno, kad je potreba za kalijumom najveća.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="pb-deo pb-deo--tamni" aria-labelledby="pb-zasto">
+      <span class="oznaka">Zašto tečno</span>
+      <h2 id="pb-zasto">Tačna doza, u pravo vreme, na pravo mesto</h2>
+      <div class="pb-brojke">
+        <div class="pb-brojka"><strong>+7 %</strong><span>prinosa kukuruza uz deljenu prihranu azotom.</span><a class="izvor-veza" href="#pb-izvori">[1]</a></div>
+        <div class="pb-brojka"><strong>−55 %</strong><span>isparavanja amonijaka kad se azot unese u zemljište.</span><a class="izvor-veza" href="#pb-izvori">[2]</a></div>
+        <div class="pb-brojka"><strong>+84 %</strong><span>usvojenog fosfora uz APP u ogledu sa kukuruzom, u odnosu na kontrolu.</span><a class="izvor-veza" href="#pb-izvori">[3]</a></div>
+      </div>
+    </section>
+
+    <section class="pb-deo" aria-labelledby="pb-kako">
+      <span class="oznaka">Kako radimo</span>
+      <h2 id="pb-kako">Od upita do podrške u sezoni</h2>
+      <ol class="pb-koraci">
+        <li><strong>Upit</strong><span>obrazac ili poziv</span></li>
+        <li><strong>Predlog</strong><span>po kulturi i hektarima</span></li>
+        <li><strong>Avans</strong><span>potvrda količine i roka</span></li>
+        <li><strong>Isporuka</strong><span>do vašeg skladišta</span></li>
+        <li><strong>Podrška</strong><span>u sezoni: rezervoari, pretakanje</span></li>
+      </ol>
+    </section>
+
+    <section class="pb-deo pb-ko" aria-label="Ko smo">
+      <span class="oznaka">Ko smo</span>
+      <p class="pb-citat">Sa APP-om radimo od njegovog prvog uvoza u Srbiju — znamo kako se primenjuje na našim zemljištima.</p>
+    </section>
+
+    <section class="pb-deo" id="kalkulator" aria-labelledby="kalk-naslov">
+      <div class="kalkulator">
+        <div>
+          <span class="oznaka">Kalkulator</span>
+          <h2 id="kalk-naslov">Koliko UAN-a vam treba?</h2>
+          <p class="uvod">Upišite površinu i dozu azota — odmah vidite litre, tone i potreban rezervoar.</p>
+          <p class="napomena">Preračun za UAN 32: 1 litar ≈ 0,42 kg azota, gustina 1,32 kg/l. Dozu određuju kultura, planirani prinos i stanje zemljišta — za vašu parcelu pripremamo predlog.</p>
+        </div>
+        <form class="kalkulator__forma" id="kalk" novalidate>
+          <div class="kalkulator__polja">
+            <label>Površina (ha)<input type="number" id="kalk-ha" min="0" step="1" inputmode="decimal" value="100"></label>
+            <label>Doza azota (kg N/ha)<input type="number" id="kalk-n" min="0" step="5" inputmode="decimal" value="50"></label>
+          </div>
+          <div class="kalkulator__rezultat" aria-live="polite">
+            <div><strong id="kalk-l">—</strong><span>litara UAN 32</span></div>
+            <div><strong id="kalk-t">—</strong><span>tona</span></div>
+            <div><strong id="kalk-m3">—</strong><span>m³ rezervoar</span></div>
+          </div>
+          <a class="dugme" href="#pp-naslov">Zatražite ponudu za ovu količinu</a>
+        </form>
+      </div>
+    </section>
+
+    <div class="pb-kraj">
+      <a class="dugme dugme--zuto pb-kraj__dugme" href="#pp-naslov">Zatražite ponudu</a>
+      <a class="pb-kraj__tel" href="tel:+381692012001">ili pozovite +381 69 201 2001</a>
+    </div>
+
+    <div class="pb-izvori" id="pb-izvori">
+      <h2>Izvori</h2>
+      <ol>
+        <li>Quan i sar. (2021). Fates and use efficiency of nitrogen fertilizer in maize cropping systems… <em>Earth's Future</em> 9: e2020EF001514. <a href="https://doi.org/10.1029/2020EF001514" target="_blank" rel="noopener">doi</a></li>
+        <li>Pan i sar. (2016). Ammonia volatilization from synthetic fertilizers and its mitigation strategies: a global synthesis. <em>Agriculture, Ecosystems &amp; Environment</em> 232: 283–289. <a href="https://doi.org/10.1016/j.agee.2016.08.019" target="_blank" rel="noopener">doi</a></li>
+        <li>Dong i sar. (2024). Ammonium Polyphosphate Promotes Maize Growth and Phosphorus Uptake by Altering Root Properties. <em>Plants</em> 13(23): 3407. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11644354/" target="_blank" rel="noopener">ceo rad</a></li>
+      </ol>
+      <p class="napomena">Prosečni rezultati iz literature; efekat na vašoj parceli zavisi od zemljišta, vremena i načina primene. KTS: tehnički list proizvođača.</p>
+    </div>
+  </div>
 </section>

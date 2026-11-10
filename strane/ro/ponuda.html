@@ -3,4 +3,94 @@
   <div class="ponuda-prozor__kutija ponuda-prozor__kutija--strana">
 {{PONUDA_OBRAZAC}}
   </div>
+
+  <!-- FS6 (vlasnik 10.11.2026): blokovi ispod obrasca — prevod srpske strane -->
+  <div class="pb">
+    <section class="pb-deo" aria-labelledby="pb-proizvodi">
+      <span class="oznaka">Produse</span>
+      <h2 id="pb-proizvodi">Trei îngrășăminte lichide pentru sezonul 2027</h2>
+      <div class="pb-kartice">
+        <article class="pb-kartica">
+          <h3>UAN 32</h3>
+          <p>Azot lichid în trei forme: nitric acționează imediat, amoniacal rapid, amidic prelungit.</p>
+          <p class="pb-kada"><strong>Când:</strong> înainte de semănat și la fertilizările fazale — cereale păioase, rapiță, porumb; cu duze cu picături mari.</p>
+        </article>
+        <article class="pb-kartica">
+          <h3>APP 11-37 <small>POLYFERT</small></h3>
+          <p>Fosfor și azot în formă complet solubilă — fosfor care rămâne mai mult timp accesibil plantei, mai ales în bandă și pe soluri carbonatice.</p>
+          <p class="pb-kada"><strong>Când:</strong> la semănat, în bandă, la 5 cm lateral și 5 cm sub sămânță — pentru primele faze de creștere.</p>
+        </article>
+        <article class="pb-kartica">
+          <h3>KTS <small>0-0-25-17S</small></h3>
+          <p>Potasiu și sulf într-o singură soluție limpede, fără cloruri — și pentru culturile sensibile la clor.</p>
+          <p class="pb-kada"><strong>Când:</strong> la semănat, în amestec starter cu APP sau UAN (înainte de amestecare, probă în borcan) și foliar, când necesarul de potasiu este cel mai mare.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="pb-deo pb-deo--tamni" aria-labelledby="pb-zasto">
+      <span class="oznaka">De ce lichid</span>
+      <h2 id="pb-zasto">Doza exactă, la momentul potrivit, în locul potrivit</h2>
+      <div class="pb-brojke">
+        <div class="pb-brojka"><strong>+7 %</strong><span>producție la porumb cu fertilizarea cu azot fracționată.</span><a class="izvor-veza" href="#pb-izvori">[1]</a></div>
+        <div class="pb-brojka"><strong>−55 %</strong><span>volatilizare a amoniacului când azotul este încorporat în sol.</span><a class="izvor-veza" href="#pb-izvori">[2]</a></div>
+        <div class="pb-brojka"><strong>+84 %</strong><span>fosfor absorbit cu APP într-un experiment cu porumb, față de martor.</span><a class="izvor-veza" href="#pb-izvori">[3]</a></div>
+      </div>
+    </section>
+
+    <section class="pb-deo" aria-labelledby="pb-kako">
+      <span class="oznaka">Cum lucrăm</span>
+      <h2 id="pb-kako">De la cerere la asistența din sezon</h2>
+      <ol class="pb-koraci">
+        <li><strong>Cerere</strong><span>formular sau telefon</span></li>
+        <li><strong>Propunere</strong><span>după cultură și hectare</span></li>
+        <li><strong>Avans</strong><span>confirmarea cantității și a termenului</span></li>
+        <li><strong>Livrare</strong><span>la depozitul dumneavoastră</span></li>
+        <li><strong>Asistență</strong><span>în sezon: rezervoare, transvazare</span></li>
+      </ol>
+    </section>
+
+    <section class="pb-deo pb-ko" aria-label="Cine suntem">
+      <span class="oznaka">Cine suntem</span>
+      <p class="pb-citat">Lucrăm cu APP de la primul său import în Serbia — știm cum se aplică pe solurile noastre.</p>
+    </section>
+
+    <section class="pb-deo" id="kalkulator" aria-labelledby="kalk-naslov">
+      <div class="kalkulator">
+        <div>
+          <span class="oznaka">Calculator</span>
+          <h2 id="kalk-naslov">De cât UAN aveți nevoie?</h2>
+          <p class="uvod">Introduceți suprafața și doza de azot — vedeți imediat litrii, tonele și rezervorul necesar.</p>
+          <p class="napomena">Calcul pentru UAN 32: 1 litru ≈ 0,42 kg azot, densitate 1,32 kg/l. Doza depinde de cultură, producția planificată și starea solului — pentru parcela dumneavoastră pregătim o propunere.</p>
+        </div>
+        <form class="kalkulator__forma" id="kalk" novalidate>
+          <div class="kalkulator__polja">
+            <label>Suprafața (ha)<input type="number" id="kalk-ha" min="0" step="1" inputmode="decimal" value="100"></label>
+            <label>Doza de azot (kg N/ha)<input type="number" id="kalk-n" min="0" step="5" inputmode="decimal" value="50"></label>
+          </div>
+          <div class="kalkulator__rezultat" aria-live="polite">
+            <div><strong id="kalk-l">—</strong><span>litri UAN 32</span></div>
+            <div><strong id="kalk-t">—</strong><span>tone</span></div>
+            <div><strong id="kalk-m3">—</strong><span>m³ rezervor</span></div>
+          </div>
+          <a class="dugme" href="#pp-naslov">Solicitați oferta pentru această cantitate</a>
+        </form>
+      </div>
+    </section>
+
+    <div class="pb-kraj">
+      <a class="dugme dugme--zuto pb-kraj__dugme" href="#pp-naslov">Solicitați oferta</a>
+      <a class="pb-kraj__tel" href="tel:+381692012001">sau sunați: +381 69 201 2001</a>
+    </div>
+
+    <div class="pb-izvori" id="pb-izvori">
+      <h2>Surse</h2>
+      <ol>
+        <li>Quan și colab. (2021). Fates and use efficiency of nitrogen fertilizer in maize cropping systems… <em>Earth's Future</em> 9: e2020EF001514. <a href="https://doi.org/10.1029/2020EF001514" target="_blank" rel="noopener">doi</a></li>
+        <li>Pan și colab. (2016). Ammonia volatilization from synthetic fertilizers and its mitigation strategies: a global synthesis. <em>Agriculture, Ecosystems &amp; Environment</em> 232: 283–289. <a href="https://doi.org/10.1016/j.agee.2016.08.019" target="_blank" rel="noopener">doi</a></li>
+        <li>Dong și colab. (2024). Ammonium Polyphosphate Promotes Maize Growth and Phosphorus Uptake by Altering Root Properties. <em>Plants</em> 13(23): 3407. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11644354/" target="_blank" rel="noopener">articol complet</a></li>
+      </ol>
+      <p class="napomena">Rezultate medii din literatură; efectul pe parcela dumneavoastră depinde de sol, vreme și modul de aplicare. KTS: fișa tehnică a producătorului.</p>
+    </div>
+  </div>
 </section>

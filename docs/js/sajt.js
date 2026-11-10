@@ -186,6 +186,12 @@
     var sel = f.querySelector('select[name=kada][data-meseci]'); if (!sel || sel.options.length > 1) return;
     sel.getAttribute('data-meseci').split(',').forEach(function (m, i) { if (!m || !SR[i]) return; var op = document.createElement('option'); op.value = SR[i]; op.textContent = m.trim(); sel.appendChild(op); });
   });
+  // FS6: kultura na strani /ponuda — natpis na jeziku strane, vrednost na srpskom (isti zapis u CRM-u za sva tri jezika)
+  var KULT = ['pšenica', 'kukuruz', 'soja', 'suncokret', 'uljana repica', 'šećerna repa', 'povrće', 'voće', 'ostalo'];
+  forme.forEach(function (f) {
+    var sel = f.querySelector('select[name=kultura][data-kulture]'); if (!sel || sel.options.length > 1) return;
+    sel.getAttribute('data-kulture').split(',').forEach(function (m, i) { if (!m || !KULT[i]) return; var op = document.createElement('option'); op.value = KULT[i]; op.textContent = m.trim(); sel.appendChild(op); });
+  });
   function cuvaj(k, v) { try { sessionStorage.setItem(k, v); } catch (e) { /* privatni režim */ } }
   function trajno(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
   // lični link iz kampanje: zapamti za celu posetu, popuni ime i telefon, upiši klik

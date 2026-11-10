@@ -802,3 +802,54 @@ html.ponuda-otvorena .fo-dugme { display: none !important; }
   .upit__kraj { justify-content: center; }
 }
 @media (max-width: 340px) { .upit--prozor .upit__polja { grid-template-columns: 1fr; } }
+/* FS6 (vlasnik 10.11.2026): blokovi ispod obrasca na /ponuda — proizvodi, zašto tečno, kako radimo, ko smo, kalkulator, dugme, izvori */
+.pb { max-width: 960px; margin: 28px auto 0; display: grid; gap: 22px; }
+.pb-deo { background: var(--bela); border: 1px solid var(--linija); border-radius: 16px; padding: 26px 28px; box-shadow: var(--senka); }
+.pb-deo h2 { margin: 4px 0 16px; font-size: 1.45rem; line-height: 1.25; color: var(--tamna); }
+.pb-deo--tamni { background: var(--tamna); border-color: var(--tamna); color: #e9f0e4; }
+.pb-deo--tamni h2 { color: #fff; }
+.pb-deo--tamni .oznaka { color: var(--zuta); }
+.pb-kartice { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.pb-kartica { border: 1px solid var(--linija); border-top: 4px solid var(--list); border-radius: 12px; padding: 16px 18px; background: var(--krem-svetla); display: flex; flex-direction: column; gap: 8px; }
+.pb-kartica h3 { margin: 0; font-size: 1.15rem; color: var(--tamna); }
+.pb-kartica h3 small { font-size: .78rem; font-weight: 600; color: var(--sivi); margin-left: 4px; }
+.pb-kartica p { margin: 0; font-size: .95rem; line-height: 1.5; }
+.pb-kada { margin-top: auto !important; padding-top: 8px; border-top: 1px dashed var(--linija); color: var(--sivi); }
+.pb-kada strong { color: var(--list-tamni); }
+.pb-brojke { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+.pb-brojka { position: relative; padding: 16px 18px; border-radius: 12px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .1); display: grid; gap: 6px; }
+.pb-brojka strong { font-size: 2.1rem; line-height: 1; color: var(--zuta); }
+.pb-brojka span { font-size: .95rem; line-height: 1.45; }
+.pb-brojka .izvor-veza { position: absolute; top: 12px; right: 14px; font-size: .8rem; vertical-align: baseline; color: var(--zuta); }
+.pb-koraci { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; counter-reset: korak; }
+.pb-koraci li { counter-increment: korak; position: relative; padding: 14px 12px 12px; border-radius: 12px; background: var(--krem-svetla); border: 1px solid var(--linija); display: grid; gap: 4px; }
+.pb-koraci li::before { content: counter(korak); width: 28px; height: 28px; border-radius: 50%; background: var(--tamna); color: var(--zuta); font-weight: 800; display: grid; place-items: center; font-size: .9rem; }
+.pb-koraci li:not(:last-child)::after { content: "→"; position: absolute; right: -12px; top: 50%; transform: translateY(-50%); color: var(--list); font-weight: 800; z-index: 1; }
+.pb-koraci strong { color: var(--tamna); }
+.pb-koraci span { font-size: .88rem; color: var(--sivi); line-height: 1.35; }
+.pb-ko { border-left: 5px solid var(--zuta); }
+.pb-citat { margin: 6px 0 0; font-size: 1.25rem; line-height: 1.45; font-weight: 600; color: var(--tamna); }
+.pb .kalkulator { grid-template-columns: 1fr 1.1fr; }
+.pb-kraj { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 22px; padding: 10px 0 4px; }
+.pb-kraj__dugme { font-size: 1.1rem; padding: 14px 40px; }
+.pb-kraj__tel { font-weight: 600; color: var(--tamna); }
+.pb-izvori { font-size: .85rem; color: var(--sivi); padding: 0 6px; }
+.pb-izvori h2 { font-size: 1rem; margin: 0 0 6px; color: var(--tamna); }
+.pb-izvori ol { margin: 0 0 8px; padding-left: 20px; }
+html:has(.ponuda-strana) { scroll-padding-top: 90px; }
+@media (max-width: 860px) {
+  .pb-kartice, .pb-brojke { grid-template-columns: 1fr; }
+  .pb-koraci { grid-template-columns: 1fr; }
+  .pb-koraci li { grid-template-columns: 28px 1fr; column-gap: 12px; align-items: center; }
+  .pb-koraci li::before { grid-row: span 2; }
+  .pb-koraci li:not(:last-child)::after { content: "↓"; right: auto; left: 25px; top: auto; bottom: -15px; transform: none; }
+  .pb .kalkulator { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .pb { margin: 0; gap: 0; }
+  .pb-deo { border-radius: 0; border-left: 0; border-right: 0; box-shadow: none; padding: 24px 20px; }
+  .pb-ko { border-left: 0; border-top: 5px solid var(--zuta); }
+  .pb-kraj { padding: 22px 20px; background: var(--krem-2); }
+  .pb-kraj__dugme { width: 100%; text-align: center; }
+  .pb-izvori { padding: 16px 20px 24px; background: var(--krem-2); }
+}

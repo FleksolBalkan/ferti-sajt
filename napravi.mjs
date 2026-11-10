@@ -28,7 +28,10 @@ const jezici = JSON.parse(readFileSync(join(koren, 'delovi', 'jezici.json'), 'ut
 // FS5: baner + obrazac „Zatražite ponudu” — {{PONUDA_OBRAZAC}} u osnova.html (prozor) i u strani ponuda.html (deo strane).
 // Strana sa "bezProzora": true u zaglavlju nema ni prozor ni trake (osnova: <!-- FS2 prozor -->…, <!-- FS2 traka -->…).
 const PONUDA = readFileSync(join(koren, 'delovi', 'ponuda-obrazac.html'), 'utf8');
-const ponudaDeo = (h, obrazac, slika) => PONUDA.replaceAll('{{PP_H}}', h).replaceAll('{{PP_OBRAZAC}}', obrazac).replaceAll('{{PP_SLIKA}}', slika);
+// FS6: polje „Kultura” samo na strani /ponuda (iz prozora ga je vlasnik izbacio 9.11.); vrednosti se šalju na srpskom (sajt.js)
+const KULTURA = `          <label class="upit__kada">{{T:f_kultura}}<select name="kultura" data-kulture="{{T:f_kulture}}"><option value="">{{T:f_kultura_prazno}}</option></select></label>`;
+const ponudaDeo = (h, obrazac, slika) => PONUDA.replaceAll('{{PP_H}}', h).replaceAll('{{PP_OBRAZAC}}', obrazac).replaceAll('{{PP_SLIKA}}', slika)
+  .replace('{{PP_KULTURA}}', () => (obrazac === 'strana' ? KULTURA : ''));
 const godina = String(new Date().getFullYear());
 // {{VERZIJA}}: otisak stila i skripti — posle izmene pregledač i CDN uzimaju novi fajl (ne stari iz keša)
 const VERZIJA = createHash('sha256').update(['css/stil.css', 'js/sajt.js', 'js/oblacic.js'].map(f => readFileSync(join(koren, 'staticno', f), 'utf8')).join('\n')).digest('hex').slice(0, 10);

@@ -3,4 +3,94 @@
   <div class="ponuda-prozor__kutija ponuda-prozor__kutija--strana">
 {{PONUDA_OBRAZAC}}
   </div>
+
+  <!-- FS6 (vlasnik 10.11.2026): blokovi ispod obrasca — prevod srpske strane -->
+  <div class="pb">
+    <section class="pb-deo" aria-labelledby="pb-proizvodi">
+      <span class="oznaka">Termékek</span>
+      <h2 id="pb-proizvodi">Három folyékony műtrágya a 2027-es szezonra</h2>
+      <div class="pb-kartice">
+        <article class="pb-kartica">
+          <h3>UAN 32</h3>
+          <p>Folyékony nitrogén három formában: a nitrát azonnal hat, az ammónium gyorsan, az amid tartósan.</p>
+          <p class="pb-kada"><strong>Mikor:</strong> vetés előtt és fejtrágyázáskor — kalászosok, repce, kukorica; nagy cseppet adó fúvókákkal.</p>
+        </article>
+        <article class="pb-kartica">
+          <h3>APP 11-37 <small>POLYFERT</small></h3>
+          <p>Foszfor és nitrogén teljesen oldható formában — a foszfor tovább marad felvehető a növény számára, különösen sávos kijuttatásnál és karbonátos talajon.</p>
+          <p class="pb-kada"><strong>Mikor:</strong> vetéskor, sávban, 5 cm-re a mag mellett és 5 cm-rel alatta — a kezdeti fejlődéshez.</p>
+        </article>
+        <article class="pb-kartica">
+          <h3>KTS <small>0-0-25-17S</small></h3>
+          <p>Kálium és kén egyetlen tiszta, kloridmentes oldatban — klórérzékeny kultúrákhoz is.</p>
+          <p class="pb-kada"><strong>Mikor:</strong> vetéskor, APP-vel vagy UAN-nal kevert starter oldatban (keverés előtt próba üvegben), valamint levéltrágyaként, amikor a növény káliumigénye a legnagyobb.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="pb-deo pb-deo--tamni" aria-labelledby="pb-zasto">
+      <span class="oznaka">Miért folyékony</span>
+      <h2 id="pb-zasto">Pontos adag, a megfelelő időben, a megfelelő helyre</h2>
+      <div class="pb-brojke">
+        <div class="pb-brojka"><strong>+7 %</strong><span>kukoricatermés megosztott nitrogén-fejtrágyázással.</span><a class="izvor-veza" href="#pb-izvori">[1]</a></div>
+        <div class="pb-brojka"><strong>−55 %</strong><span>ammónia-párolgás, ha a nitrogént a talajba juttatják.</span><a class="izvor-veza" href="#pb-izvori">[2]</a></div>
+        <div class="pb-brojka"><strong>+84 %</strong><span>felvett foszfor APP-vel kukorica-kísérletben, a kontrollhoz képest.</span><a class="izvor-veza" href="#pb-izvori">[3]</a></div>
+      </div>
+    </section>
+
+    <section class="pb-deo" aria-labelledby="pb-kako">
+      <span class="oznaka">Hogyan dolgozunk</span>
+      <h2 id="pb-kako">Az érdeklődéstől a szezonbeli támogatásig</h2>
+      <ol class="pb-koraci">
+        <li><strong>Érdeklődés</strong><span>űrlap vagy telefon</span></li>
+        <li><strong>Javaslat</strong><span>kultúra és hektár szerint</span></li>
+        <li><strong>Előleg</strong><span>mennyiség és határidő megerősítése</span></li>
+        <li><strong>Szállítás</strong><span>az Ön raktáráig</span></li>
+        <li><strong>Támogatás</strong><span>a szezonban: tartályok, átfejtés</span></li>
+      </ol>
+    </section>
+
+    <section class="pb-deo pb-ko" aria-label="Kik vagyunk">
+      <span class="oznaka">Kik vagyunk</span>
+      <p class="pb-citat">Az APP-vel az első szerbiai behozatala óta dolgozunk — tudjuk, hogyan kell kijuttatni a mi talajainkon.</p>
+    </section>
+
+    <section class="pb-deo" id="kalkulator" aria-labelledby="kalk-naslov">
+      <div class="kalkulator">
+        <div>
+          <span class="oznaka">Kalkulátor</span>
+          <h2 id="kalk-naslov">Mennyi UAN-ra van szüksége?</h2>
+          <p class="uvod">Adja meg a területet és a nitrogénadagot — azonnal látja a litereket, tonnákat és a szükséges tartályt.</p>
+          <p class="napomena">Átszámítás UAN 32-re: 1 liter ≈ 0,42 kg nitrogén, sűrűség 1,32 kg/l. Az adagot a kultúra, a tervezett termés és a talaj állapota határozza meg — az Ön táblájára javaslatot készítünk.</p>
+        </div>
+        <form class="kalkulator__forma" id="kalk" novalidate>
+          <div class="kalkulator__polja">
+            <label>Terület (ha)<input type="number" id="kalk-ha" min="0" step="1" inputmode="decimal" value="100"></label>
+            <label>Nitrogénadag (kg N/ha)<input type="number" id="kalk-n" min="0" step="5" inputmode="decimal" value="50"></label>
+          </div>
+          <div class="kalkulator__rezultat" aria-live="polite">
+            <div><strong id="kalk-l">—</strong><span>liter UAN 32</span></div>
+            <div><strong id="kalk-t">—</strong><span>tonna</span></div>
+            <div><strong id="kalk-m3">—</strong><span>m³ tartály</span></div>
+          </div>
+          <a class="dugme" href="#pp-naslov">Ajánlatot kérek erre a mennyiségre</a>
+        </form>
+      </div>
+    </section>
+
+    <div class="pb-kraj">
+      <a class="dugme dugme--zuto pb-kraj__dugme" href="#pp-naslov">Ajánlatot kérek</a>
+      <a class="pb-kraj__tel" href="tel:+381692012001">vagy hívjon: +381 69 201 2001</a>
+    </div>
+
+    <div class="pb-izvori" id="pb-izvori">
+      <h2>Források</h2>
+      <ol>
+        <li>Quan és mtsai (2021). Fates and use efficiency of nitrogen fertilizer in maize cropping systems… <em>Earth's Future</em> 9: e2020EF001514. <a href="https://doi.org/10.1029/2020EF001514" target="_blank" rel="noopener">doi</a></li>
+        <li>Pan és mtsai (2016). Ammonia volatilization from synthetic fertilizers and its mitigation strategies: a global synthesis. <em>Agriculture, Ecosystems &amp; Environment</em> 232: 283–289. <a href="https://doi.org/10.1016/j.agee.2016.08.019" target="_blank" rel="noopener">doi</a></li>
+        <li>Dong és mtsai (2024). Ammonium Polyphosphate Promotes Maize Growth and Phosphorus Uptake by Altering Root Properties. <em>Plants</em> 13(23): 3407. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11644354/" target="_blank" rel="noopener">teljes cikk</a></li>
+      </ol>
+      <p class="napomena">Átlagos szakirodalmi eredmények; a hatás az Ön tábláján a talajtól, az időjárástól és a kijuttatás módjától függ. KTS: a gyártó műszaki adatlapja.</p>
+    </div>
+  </div>
 </section>
