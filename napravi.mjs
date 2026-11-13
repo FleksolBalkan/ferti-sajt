@@ -12,9 +12,9 @@ import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
 
 // Adresa sajta kad dobije domen (npr. 'https://www.fertishop.rs/'). Dok je prazna, nema canonical/og:url/og:image/hreflang.
-// Dok nema sopstvenog domena, adresa je Render (23.10.2026) — kad vlasnik kupi domen, promeniti ovde (ili ADRESA_SAJTA pri sklapanju) i ponovo sklopiti:
+// Od 13.11.2026 sopstveni domen ferti-shop.com (Render custom domain); fertishop.onrender.com i dalje radi.
 // canonical, hreflang, og:url, sitemap.xml i robots.txt se prave iz ove adrese.
-const ADRESA_SAJTA = process.env.ADRESA_SAJTA || 'https://fertishop.onrender.com/';
+const ADRESA_SAJTA = process.env.ADRESA_SAJTA || 'https://ferti-shop.com/';
 const ZA_SITEMAP = [];   // { loc, alternates: [{lang, href}], lastmod }
 // Koren sajta na hostingu — za stranu 404, koja se prikazuje na bilo kojoj dubini adrese.
 // '/' za sopstveni domen ili Render; '/ime-repoa/' za GitHub Pages projektnu stranu bez domena.
