@@ -1,4 +1,8 @@
 <!--{"naslov":"Strana nije pronađena","opis":"Tražena strana ne postoji.","noindex":true}-->
+<script>
+  // CRM F5 (20.11.2026): obrazac koji još nema svoju fasciklu (/obrazac/<naziv>) → zajednička strana obrasca (/obrazac/?n=<naziv>)
+  (function () { var m = location.pathname.match(/^\/obrazac\/([a-z0-9-]{1,40})\/?$/); if (m) location.replace('/obrazac/?n=' + m[1] + (location.search ? '&' + location.search.slice(1) : '')); })();
+</script>
 <section class="traka-strane">
   <div class="okvir">
     <h1>Strana nije pronađena</h1>

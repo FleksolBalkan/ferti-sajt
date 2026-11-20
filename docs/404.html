@@ -66,6 +66,10 @@
 </header>
 
 <main id="sadrzaj" tabindex="-1">
+<script>
+  // CRM F5 (20.11.2026): obrazac koji još nema svoju fasciklu (/obrazac/<naziv>) → zajednička strana obrasca (/obrazac/?n=<naziv>)
+  (function () { var m = location.pathname.match(/^\/obrazac\/([a-z0-9-]{1,40})\/?$/); if (m) location.replace('/obrazac/?n=' + m[1] + (location.search ? '&' + location.search.slice(1) : '')); })();
+</script>
 <section class="naslovna">
   <div class="naslovna__foto" style="background-image:url('img/polje.jpg')" aria-hidden="true"></div>
   
