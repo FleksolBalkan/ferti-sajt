@@ -166,7 +166,7 @@
   }
   function prikaziRacun() {
     var k = A.kraj || {}, x = racun.rezultat, h = '<h1>Vaš broj</h1>';
-    if (x.tekst) h += '<div class="broj">' + esc(x.tekst) + (x.izvor ? '<div class="izvor">Izvor: ' + esc(x.izvor) + '</div>' : '') + '</div>';
+    if (x.tekst) h += '<div class="broj">' + esc(x.tekst) + (x.zasto ? '<div class="zasto">' + esc(x.zasto) + '</div>' : '') + (x.izvor ? '<div class="izvor">Izvor: ' + esc(x.izvor) + '</div>' : '') + '</div>';
     else h += '<p>Za ovu kombinaciju nemamo pouzdan broj. Pitajte našeg <a href="https://ferti-shop.com/asistent">AI agronoma</a> — postaviće jedno-dva pitanja više.</p>';
     if (k.napomena) h += '<div class="napomena">' + esc(k.napomena) + '</div>';
     if (x.tekst) h += '<h1 style="margin-top:22px">' + esc(k.tekst || 'Celu računicu sa podelom po prihranama?') + '</h1><button class="izbor" id="kda">Da, pošaljite mi</button><button class="izbor" id="kne">Ne, hvala</button>';

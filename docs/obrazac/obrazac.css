@@ -26,4 +26,5 @@ input[type=text], input[type=tel], input[type=email] { width: 100%; font-size: 1
 .rez .traka-r { height: 14px; background: #dfe7d6; border-radius: 99px; overflow: hidden; }
 .rez .traka-r > i { display: block; height: 100%; background: var(--list); }
 .broj { background: #fff; border: 2px solid var(--list); border-radius: 14px; padding: 16px; font-size: 18px; line-height: 1.45; font-weight: 600; }
+.zasto { font-size: 15px; font-weight: 400; margin-top: 10px; padding-top: 8px; border-top: 1px solid #dfe7d6; }
 .izvor { font-size: 14px; color: #5b6b5e; font-style: italic; margin-top: 8px; font-weight: 400; }
