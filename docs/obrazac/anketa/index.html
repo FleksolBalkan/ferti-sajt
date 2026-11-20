@@ -6,127 +6,15 @@
 <meta name="robots" content="noindex, nofollow">
 <title>Anketa za ratare — Ferti Shop</title>
 <meta property="og:title" content="Anketa za ratare — Ferti Shop">
-<meta property="og:description" content="Osam kratkih pitanja o đubrenju — oko minut. Na kraju možete dobiti besplatan proračun azota za vašu njivu.">
+<meta property="og:description" content="8 kratkih pitanja o đubrenju — 1 minut, bez registracije. Na kraju, ako želite, besplatan proračun azota za vašu njivu.">
 <meta property="og:image" content="https://ferti-shop.com/img/og.jpg">
 <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
-<!-- CRM F5 OBRASCI (vlasnik 19./20.11.2026): generička strana obrasca — ferti-shop.com/obrazac/<naziv>?izvor=fb (tester: &t=KOD).
-     Pitanja dolaze sa servera (tabela ankete) — nov obrazac = nov red u bazi, bez izmene ove strane. Jedno pitanje po ekranu, veliki dugmići,
-     bez menija sajta. Jedan uređaj = jedan odgovor. Kontakt se traži samo ako ratar želi proračun, uz pristanak. -->
-<style>
-  :root { --tamna: #14301f; --list: #4e9f3d; --zuta: #c9cc3f; --krem: #f4f7ef; }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; min-height: 100%; background: var(--krem); font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--tamna); }
-  .traka { background: var(--tamna); color: #fff; padding: 12px 16px; padding-top: max(12px, env(safe-area-inset-top)); border-bottom: 3px solid var(--zuta); font-weight: 600; }
-  .okvir { max-width: 520px; margin: 0 auto; padding: 18px 16px 40px; }
-  .napredak { height: 6px; background: #dfe7d6; border-radius: 99px; overflow: hidden; margin-bottom: 18px; }
-  .napredak > i { display: block; height: 100%; background: var(--list); transition: width .2s; }
-  h1 { font-size: 22px; line-height: 1.3; margin: 6px 0 16px; }
-  p { font-size: 16px; line-height: 1.45; }
-  .izbor { display: block; width: 100%; text-align: left; font-size: 18px; padding: 16px 18px; margin: 0 0 10px; border: 2px solid #cfdcc3; border-radius: 14px; background: #fff; color: var(--tamna); cursor: pointer; }
-  .izbor.da { border-color: var(--list); background: #eef7e8; font-weight: 600; }
-  .dugme { display: block; width: 100%; font-size: 18px; font-weight: 700; padding: 16px; border: 0; border-radius: 14px; background: var(--list); color: #fff; cursor: pointer; margin-top: 8px; }
-  .dugme[disabled] { opacity: .5; }
-  .nazad { background: none; border: 0; color: #5b6b5e; font-size: 15px; padding: 10px 0; cursor: pointer; }
-  label { display: block; font-size: 15px; margin: 12px 0 4px; }
-  input[type=text], input[type=tel], input[type=email] { width: 100%; font-size: 18px; padding: 14px; border: 2px solid #cfdcc3; border-radius: 12px; }
-  .pristanak { display: flex; gap: 10px; align-items: flex-start; font-size: 15px; margin-top: 14px; }
-  .pristanak input { width: 22px; height: 22px; flex: 0 0 auto; margin-top: 2px; }
-  .zamka { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
-  .greska { color: #b91c1c; font-size: 15px; margin-top: 10px; }
-</style>
+<!-- CRM F5 OBRASCI: anketa za ratare (ferti-shop.com/obrazac/anketa?izvor=fb). Rad: /obrazac/obrazac.js; pitanja sa servera (tabela ankete). -->
+<link rel="stylesheet" href="/obrazac/obrazac.css">
 </head>
 <body>
 <div class="traka" id="naslov">Ferti Shop</div>
 <div class="okvir" id="app"><p>Učitavam…</p></div>
-<script>
-(function () {
-  var API = /^(localhost|127\.0\.0\.1)$/.test(location.hostname) ? 'http://localhost:10099/api/anketa/' : 'https://tranzit-eu.onrender.com/api/anketa/';
-  var q = new URLSearchParams(location.search);
-  // naziv obrasca: /obrazac/<naziv>/ (fascikla) ili /obrazac/?n=<naziv> (preusmerenje sa 404 za nove obrasce)
-  var deo = location.pathname.replace(/\/+$/, '').split('/'), naziv = q.get('n') || (deo[deo.length - 2] === 'obrazac' ? deo[deo.length - 1] : 'anketa');
-  if (!/^[a-z0-9-]{1,40}$/.test(naziv)) naziv = 'anketa';
-  var izvor = (q.get('izvor') || 'sajt').replace(/[^a-z0-9_-]/gi, '').slice(0, 30) || 'sajt';
-  var t = q.get('t'); if (t && !/^[A-Za-z0-9_-]{1,40}$/.test(t)) t = null;
-  var kljucUredjaja = 'ferti_uredjaj', kljucGotovo = 'ferti_obrazac_' + naziv;
-  function uredjaj() { try { var u = localStorage.getItem(kljucUredjaja); if (!u) { u = (crypto.randomUUID ? crypto.randomUUID() : String(Math.random()).slice(2) + Date.now()); localStorage.setItem(kljucUredjaja, u); } return u; } catch (e) { return 'bez-pamcenja-' + Date.now() + '-' + Math.random().toString(36).slice(2); } }
-  var app = document.getElementById('app'), A = null, odg = {}, korak = 0, red = [];
-  function esc(s) { return String(s == null ? '' : s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
-  function vidljivo(p) { if (!p.uslov) return true; if (p.uslov.nije != null) return odg[p.uslov.pitanje] != null && odg[p.uslov.pitanje] !== p.uslov.nije; return odg[p.uslov.pitanje] === p.uslov.jeste; }
-  function sledeci(od) { for (var i = od; i < A.pitanja.length; i++) if (vidljivo(A.pitanja[i])) return i; return A.pitanja.length; }
-  function napredak() { var n = A.pitanja.length + 1; return '<div class="napredak"><i style="width:' + Math.round(100 * Math.min(korak, n) / n) + '%"></i></div>'; }
-  function prikazi() {
-    if (korak >= A.pitanja.length) return kraj();
-    var p = A.pitanja[korak], vise = p.tip === 'vise', izabrano = [].concat(odg[p.id] || []);
-    var h = napredak() + '<h1>' + esc(p.tekst) + '</h1>';
-    p.opcije.forEach(function (o, i) { h += '<button class="izbor' + (izabrano.indexOf(o) >= 0 ? ' da' : '') + '" data-i="' + i + '">' + esc(o) + '</button>'; });
-    if (vise) h += '<button class="dugme" id="dalje"' + (izabrano.length ? '' : ' disabled') + '>Dalje</button>';
-    if (red.length) h += '<button class="nazad" id="nazad">‹ Nazad</button>';
-    app.innerHTML = h;
-    Array.prototype.forEach.call(app.querySelectorAll('.izbor'), function (b) {
-      b.onclick = function () {
-        var o = p.opcije[+b.getAttribute('data-i')];
-        if (vise) { var l = [].concat(odg[p.id] || []); var k = l.indexOf(o); if (k >= 0) l.splice(k, 1); else l.push(o); odg[p.id] = l; prikazi(); }
-        else { odg[p.id] = o; red.push(korak); korak = sledeci(korak + 1); prikazi(); }
-      };
-    });
-    var d = document.getElementById('dalje'); if (d) d.onclick = function () { red.push(korak); korak = sledeci(korak + 1); prikazi(); };
-    var n = document.getElementById('nazad'); if (n) n.onclick = function () { korak = red.pop(); prikazi(); };
-  }
-  function kraj() {
-    var k = A.kraj || {};
-    var h = napredak() + '<h1>' + esc(k.tekst || 'Hvala!') + '</h1>';
-    h += '<button class="izbor" id="kda">Da</button><button class="izbor" id="kne">Ne, hvala</button>';
-    if (red.length) h += '<button class="nazad" id="nazad">‹ Nazad</button>';
-    app.innerHTML = h;
-    document.getElementById('kne').onclick = function () { posalji(false); };
-    document.getElementById('kda').onclick = kontakt;
-    var n = document.getElementById('nazad'); if (n) n.onclick = function () { korak = red.pop(); prikazi(); };
-  }
-  function kontakt() {
-    var k = A.kraj || {};
-    app.innerHTML = napredak() + '<h1>Gde da pošaljemo proračun?</h1>' +
-      '<label>Ime i prezime</label><input type="text" id="ime" autocomplete="name">' +
-      '<label>Telefon</label><input type="tel" id="tel" autocomplete="tel" inputmode="tel">' +
-      '<label>Mejl (ako želite)</label><input type="email" id="mejl" autocomplete="email">' +
-      '<label>Mesto</label><input type="text" id="mesto" autocomplete="address-level2">' +
-      '<div class="zamka"><label>Web</label><input type="text" id="web" tabindex="-1" autocomplete="off"></div>' +
-      '<label class="pristanak"><input type="checkbox" id="ok"> ' + esc(k.pristanak || 'Saglasan sam da me Ferti Shop kontaktira zbog proračuna.') + '</label>' +
-      '<button class="dugme" id="salji">Pošalji</button><div class="greska" id="gr"></div><button class="nazad" id="nazad">‹ Nazad</button>';
-    document.getElementById('nazad').onclick = kraj;
-    document.getElementById('salji').onclick = function () {
-      var tel = document.getElementById('tel').value.trim(), mejl = document.getElementById('mejl').value.trim();
-      if (!tel && !mejl) { document.getElementById('gr').textContent = 'Upišite telefon ili mejl.'; return; }
-      if (!document.getElementById('ok').checked) { document.getElementById('gr').textContent = 'Potrebna je vaša saglasnost da vas kontaktiramo.'; return; }
-      posalji(true, { ime: document.getElementById('ime').value.trim(), telefon: tel, mejl: mejl }, document.getElementById('mesto').value.trim(), document.getElementById('web').value);
-    };
-  }
-  function posalji(zeli, k, mesto, web) {
-    app.innerHTML = '<p>Šaljem…</p>';
-    var telo = { uredjaj: uredjaj(), izvor: izvor, odgovori: odg, zeli_proracun: zeli, pristanak: !!zeli, kontakt: k || null, mesto: mesto || null, web: web || '' };
-    if (t) telo.t = t;
-    fetch(API + encodeURIComponent(naziv), { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(telo) })
-      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, status: r.status, d: d }; }); })
-      .then(function (r) {
-        if (r.ok || r.status === 409) { try { localStorage.setItem(kljucGotovo, '1'); } catch (e) { /* bez pamćenja */ } }
-        app.innerHTML = r.ok ? '<h1>Hvala!</h1><p>' + (zeli ? 'Javićemo vam se sa proračunom azota za vašu njivu.' : 'Vaši odgovori nam pomažu da savetujemo bolje.') + '</p><p>Dozu možete izračunati i odmah: <a href="https://ferti-shop.com/asistent">AI agronom</a>.</p>'
-          : '<h1>' + (r.status === 409 ? 'Hvala!' : 'Nešto nije u redu') + '</h1><p>' + esc((r.d && r.d.error) || 'Pokušajte ponovo za minut.') + '</p>';
-      })
-      .catch(function () { app.innerHTML = '<h1>Nema veze sa serverom</h1><p>Pokušajte ponovo za minut.</p>'; });
-  }
-  try { if (localStorage.getItem(kljucGotovo)) { app.innerHTML = '<h1>Hvala!</h1><p>Sa ovog uređaja je već odgovoreno.</p>'; return; } } catch (e) { /* bez pamćenja */ }
-  // server na besplatnom planu se budi i do minut
-  var pokusaj = 0;
-  (function ucitaj() {
-    fetch(API + encodeURIComponent(naziv)).then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
-      .then(function (r) {
-        if (!r.ok) { app.innerHTML = '<h1>Obrazac nije dostupan</h1><p>' + esc(r.d && r.d.error) + '</p>'; return; }
-        A = r.d; document.getElementById('naslov').textContent = A.naslov || 'Ferti Shop'; document.title = (A.naslov || 'Obrazac') + ' — Ferti Shop';
-        app.innerHTML = '<h1>' + esc(A.naslov) + '</h1><p>' + esc(A.uvod || '') + '</p><button class="dugme" id="kreni">Počni</button>';
-        document.getElementById('kreni').onclick = function () { korak = sledeci(0); prikazi(); };
-      })
-      .catch(function () { if (++pokusaj < 6) { app.innerHTML = '<p>Učitavam… (server se budi)</p>'; setTimeout(ucitaj, 10000); } else app.innerHTML = '<h1>Nema veze sa serverom</h1><p>Pokušajte ponovo za minut.</p>'; });
-  })();
-})();
-</script>
+<script src="/obrazac/obrazac.js"></script>
 </body>
 </html>
