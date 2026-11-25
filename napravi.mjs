@@ -2,14 +2,17 @@
 //   srpski -> docs/, mađarski -> docs/hu/, rumunski -> docs/ro/ (folder iz jezici.json)
 // Pokretanje:  node napravi.mjs
 // Svaka strana počinje komentarom sa podacima:  <!--{"naslov":"…","opis":"…"}-->
-//   neobavezno: "dodatno" (HTML u <head>, npr. JSON-LD), "noindex": true
+//   neobavezno: "dodatno" (HTML u <head>, npr. JSON-LD; {{ADRESA_SAJTA}} u njemu = puna adresa sajta), "noindex": true
+// BreadcrumbList (JSON-LD) pravi se sam iz mrvica strane (<ol class="mrvice">); strana bez mrvica dobija Početna (+ naslov).
+// sitemap.xml lastmod = datum poslednje izmene izvorne strane strane/<jezik>/<ime> (git commit; neuneta izmena = datum fajla).
 // U osnova.html: {{T:kljuc}} = tekst iz jezici.json, {{KOREN}} = put do korena sajta ('' ili '../').
 // docs/ se pri svakom pokretanju pravi iznova — ne menjati ga ručno. Fajlovi koji moraju u koren objave
 // (robots.txt, verifikacija za Google…) idu u staticno/; docs/CNAME (domen na GitHub Pages) se čuva sam.
-import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, cpSync, renameSync, existsSync } from 'node:fs';
+import { readFileSync, writeFileSync, readdirSync, mkdirSync, rmSync, cpSync, renameSync, existsSync, statSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createHash } from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 
 // Adresa sajta kad dobije domen (npr. 'https://www.fertishop.rs/'). Dok je prazna, nema canonical/og:url/og:image/hreflang.
 // Od 13.11.2026 sopstveni domen ferti-shop.com (Render custom domain); fertishop.onrender.com i dalje radi.
@@ -57,6 +60,48 @@ for (const j of Object.keys(jezici)) {
   });
 }
 const ima = (j, ime) => strane[j].some(s => s.ime === ime);
+
+// lastmod za sitemap: datum poslednjeg commita izvorne strane; ako fajl ima neunetu izmenu (ili git nije dostupan) — datum fajla.
+// Tako strane koje nisu menjane zadržavaju stari datum, a ne dobijaju datum svakog builda.
+const lokalniDatum = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+function datumIzmene(put) {
+  const rel = put.slice(koren.length + 1).replace(/\\/g, '/');
+  try {
+    const git = a => execFileSync('git', a, { cwd: koren, encoding: 'utf8', stdio: ['ignore', 'pipe', 'ignore'] }).trim();
+    if (!git(['status', '--porcelain', '--', rel])) {
+      const d = git(['log', '-1', '--format=%cs', '--', rel]);
+      if (/^\d{4}-\d{2}-\d{2}$/.test(d)) return d;
+    }
+  } catch { /* nema gita — datum fajla */ }
+  return lokalniDatum(statSync(put).mtime);
+}
+
+// BreadcrumbList iz mrvica strane: <ol class="mrvice"><li><a href="index.html">Početna</a></li>…<li aria-current="page">Strana</li></ol>
+const bezOznaka = s => s.replace(/<[^>]+>/g, '').replace(/&nbsp;/g, ' ').replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&amp;/g, '&').trim();
+const pocetnaIme = {};
+for (const j of Object.keys(jezici)) {
+  for (const s of strane[j]) {
+    const m = s.sadrzaj.match(/<ol class="mrvice"[^>]*>\s*<li><a href="index\.html">([^<]+)<\/a>/);
+    if (m) { pocetnaIme[j] = bezOznaka(m[1]); break; }
+  }
+}
+function mrviceLD(j, ime, podaci, sadrzaj) {
+  const adr = h => ADRESA_SAJTA + putDo(j, h === 'index.html' ? '' : h.replace(/^index\.html(?=#)/, ''));
+  const stavke = [];
+  const m = sadrzaj.match(/<ol class="mrvice"[^>]*>([\s\S]*?)<\/ol>/);
+  if (m) {
+    for (const li of m[1].matchAll(/<li[^>]*>([\s\S]*?)<\/li>/g)) {
+      const a = li[1].match(/<a href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/);
+      stavke.push(a ? { name: bezOznaka(a[2]), item: adr(a[1]) } : { name: bezOznaka(li[1]), item: adr(ime) });
+    }
+  } else {
+    stavke.push({ name: pocetnaIme[j] || jezici[j].t.pocetna_strana, item: adr('index.html') });
+    if (ime !== 'index.html') stavke.push({ name: podaci.naslov, item: adr(ime) });
+  }
+  const ld = { '@context': 'https://schema.org', '@type': 'BreadcrumbList',
+    itemListElement: stavke.map((s, i) => ({ '@type': 'ListItem', position: i + 1, name: s.name, item: s.item })) };
+  return `<script type="application/ld+json">${JSON.stringify(ld).replace(/</g, '\\u003c')}</script>`;
+}
 
 // ── Naslovna kompozicija: fotografija + zeleni talas + okrugla slika + šestougaone ikone (delovi/naslovne.json).
 // Tekst (naslov, uvod, mrvice, dugmad) ostaje u strani — uzima se iz postojeće sekcije .hero ili .traka-strane.
@@ -129,14 +174,16 @@ for (const j of Object.keys(jezici)) {
 
     const url = ADRESA_SAJTA ? ADRESA_SAJTA + putDo(j, ime === 'index.html' ? '' : ime) : '';
     let meta = '';
+    let ldMrvice = '';
     if (url && !podaci.noindex) {
+      ldMrvice = mrviceLD(j, ime, podaci, sadrzaj);
       meta = `<link rel="canonical" href="${escAtr(url)}">\n<meta property="og:url" content="${escAtr(url)}">\n` +
         `<meta property="og:image" content="${escAtr(ADRESA_SAJTA)}img/og.png">\n<meta property="og:image:width" content="1200">\n` +
         `<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">\n` +
         Object.keys(jezici).filter(k => ima(k, ime)).map(k =>
           `<link rel="alternate" hreflang="${jezici[k].lang}" href="${escAtr(ADRESA_SAJTA + putDo(k, ime === 'index.html' ? '' : ime))}">`).join('\n') +
         (ima(GLAVNI, ime) ? `\n<link rel="alternate" hreflang="x-default" href="${escAtr(ADRESA_SAJTA + putDo(GLAVNI, ime === 'index.html' ? '' : ime))}">` : '');
-      ZA_SITEMAP.push({ loc: url, alternates: Object.keys(jezici).filter(k => ima(k, ime)).map(k => ({ lang: jezici[k].lang, href: ADRESA_SAJTA + putDo(k, ime === 'index.html' ? '' : ime) })) });
+      ZA_SITEMAP.push({ loc: url, lastmod: datumIzmene(join(koren, 'strane', j, ime)), alternates: Object.keys(jezici).filter(k => ima(k, ime)).map(k => ({ lang: jezici[k].lang, href: ADRESA_SAJTA + putDo(k, ime === 'index.html' ? '' : ime) })) });
     }
 
     // funkcije kao zamena: znak $ u tekstu se ne tumači kao poseban obrazac
@@ -159,7 +206,7 @@ for (const j of Object.keys(jezici)) {
       .replaceAll('{{GODINA}}', () => godina)
       .replaceAll('{{VERZIJA}}', () => VERZIJA)
       .replace('{{JEZICI}}', () => izborJezika)
-      .replace('{{DODATNO_ZAGLAVLJE}}', () => [meta, podaci.dodatno || ''].filter(Boolean).join('\n'));
+      .replace('{{DODATNO_ZAGLAVLJE}}', () => [meta, (podaci.dodatno || '').replaceAll('{{ADRESA_SAJTA}}', ADRESA_SAJTA), ldMrvice].filter(Boolean).join('\n'));
     // stavka menija za ovu stranu dobija aria-current
     html = html.split(`<a class="meni-veza" href="${ime}"`).join(`<a class="meni-veza" href="${ime}" aria-current="page"`);
     if (podaci.noindex) html = html.replace('</title>', '</title>\n<meta name="robots" content="noindex">');
@@ -178,9 +225,8 @@ for (const j of Object.keys(jezici)) {
 writeFileSync(join(novo, '.nojekyll'), '');
 // sitemap.xml (sve strane na sva tri jezika, sa hreflang alternativama) i robots.txt — ako ih staticno/ ne daje ručno
 if (ADRESA_SAJTA && ZA_SITEMAP.length) {
-  const danas = new Date().toISOString().slice(0, 10);
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n` +
-    ZA_SITEMAP.map(u => `  <url>\n    <loc>${escAtr(u.loc)}</loc>\n    <lastmod>${danas}</lastmod>\n` +
+    ZA_SITEMAP.map(u => `  <url>\n    <loc>${escAtr(u.loc)}</loc>\n    <lastmod>${u.lastmod}</lastmod>\n` +
       u.alternates.map(a => `    <xhtml:link rel="alternate" hreflang="${a.lang}" href="${escAtr(a.href)}"/>`).join('\n') + `\n  </url>`).join('\n') + '\n</urlset>\n';
   if (!existsSync(join(novo, 'sitemap.xml'))) writeFileSync(join(novo, 'sitemap.xml'), sitemap);
   if (!existsSync(join(novo, 'robots.txt'))) writeFileSync(join(novo, 'robots.txt'), `User-agent: *\nAllow: /\nSitemap: ${ADRESA_SAJTA}sitemap.xml\n`);

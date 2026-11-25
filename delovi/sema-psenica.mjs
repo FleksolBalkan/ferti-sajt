@@ -5,12 +5,12 @@ import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const koren = join(dirname(fileURLToPath(import.meta.url)), '..');
-const N_PO_L = 0.39;   // kg N u 1 l UAN N30 (gustina 1,3 kg/l × 30 %)
+const N_PO_L = 0.39;   // kg N u 1 l UAN 30 (gustina 1,3 kg/l × 30 %)
 const KG_PO_L = 1.3;   // kg đubriva u 1 l
 
 const JEZICI = {
   sr: {
-    naslov: 'Raspored prihrana ozime pšenice UAN-om N30',
+    naslov: 'Raspored prihrana ozime pšenice đubrivom UAN 30',
     faze: ['Nicanje', 'Izdanak', 'Bokorenje', 'Bokorenje', '1. kolence', '2. kolence', '3. kolence', 'List zastavičar', '', 'Klasanje', 'Cvetanje', '', 'Nalivanje zrna', 'Zrelost'],
     bbch: 'BBCH skala',
     doze: [
@@ -20,10 +20,10 @@ const JEZICI = {
       { naslov: '3. prihrana', pod: 'cvetanje · UAN + voda 1 : 3 – 1 : 4' },
     ],
     lha: 'l/ha', kgN: 'kg N/ha', kg: 'kg UAN/ha',
-    legenda: '1 l UAN N30 = 1,3 kg = 0,39 kg N',
+    legenda: '1 l UAN 30 = 1,3 kg = 0,39 kg N',
   },
   hu: {
-    naslov: 'Az őszi búza UAN N30 fejtrágyázásának ütemezése',
+    naslov: 'Az őszi búza UAN 30 fejtrágyázásának ütemezése',
     faze: ['Kelés', 'Hajtás', 'Bokrosodás', 'Bokrosodás', '1. nódusz', '2. nódusz', '3. nódusz', 'Zászlós levél', '', 'Kalászolás', 'Virágzás', '', 'Szemtelítődés', 'Érés'],
     bbch: 'BBCH-skála',
     doze: [
@@ -33,10 +33,10 @@ const JEZICI = {
       { naslov: '3. fejtrágya', pod: 'virágzás · UAN + víz 1 : 3 – 1 : 4' },
     ],
     lha: 'l/ha', kgN: 'kg N/ha', kg: 'kg UAN/ha',
-    legenda: '1 l UAN N30 = 1,3 kg = 0,39 kg N',
+    legenda: '1 l UAN 30 = 1,3 kg = 0,39 kg N',
   },
   ro: {
-    naslov: 'Calendarul fertilizărilor grâului de toamnă cu UAN N30',
+    naslov: 'Calendarul fertilizărilor grâului de toamnă cu UAN 30',
     faze: ['Răsărire', 'Lăstar', 'Înfrățire', 'Înfrățire', 'Nod 1', 'Nod 2', 'Nod 3', 'Frunza stindard', '', 'Înspicare', 'Înflorire', '', 'Umplerea bobului', 'Maturitate'],
     bbch: 'Scara BBCH',
     doze: [
@@ -46,7 +46,7 @@ const JEZICI = {
       { naslov: 'Fertilizarea 3', pod: 'înflorire · UAN + apă 1 : 3 – 1 : 4' },
     ],
     lha: 'l/ha', kgN: 'kg N/ha', kg: 'kg UAN/ha',
-    legenda: '1 l UAN N30 = 1,3 kg = 0,39 kg N',
+    legenda: '1 l UAN 30 = 1,3 kg = 0,39 kg N',
   },
 };
 
