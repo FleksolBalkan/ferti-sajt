@@ -178,7 +178,8 @@ for (const j of Object.keys(jezici)) {
     if (url && !podaci.noindex) {
       ldMrvice = mrviceLD(j, ime, podaci, sadrzaj);
       meta = `<link rel="canonical" href="${escAtr(url)}">\n<meta property="og:url" content="${escAtr(url)}">\n` +
-        `<meta property="og:image" content="${escAtr(ADRESA_SAJTA)}img/og.png">\n<meta property="og:image:width" content="1200">\n` +
+        // nova slika za pregled linka (vlasnik 25.11.2026): og.jpg sa ?v=2 da Viber/FB uzmu novu; stari img/og.png ostaje na sajtu (keš), ali se više ne koristi
+        `<meta property="og:image" content="${escAtr(ADRESA_SAJTA)}img/og.jpg?v=2">\n<meta property="og:image:width" content="1200">\n` +
         `<meta property="og:image:height" content="630">\n<meta name="twitter:card" content="summary_large_image">\n` +
         Object.keys(jezici).filter(k => ima(k, ime)).map(k =>
           `<link rel="alternate" hreflang="${jezici[k].lang}" href="${escAtr(ADRESA_SAJTA + putDo(k, ime === 'index.html' ? '' : ime))}">`).join('\n') +
